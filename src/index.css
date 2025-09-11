@@ -61,13 +61,9 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
-}
-
-/* Custom utilities for Zava brand */
-.font-inter {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 .hero-gradient {
