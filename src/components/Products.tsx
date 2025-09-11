@@ -142,7 +142,7 @@ export function Products({ id }: ProductsProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
         >
           {products.map((product) => (
             <motion.div key={product.id} variants={itemVariants}>
@@ -152,56 +152,56 @@ export function Products({ id }: ProductsProps) {
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-32 md:h-40 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <Badge 
-                      className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-2.5 py-1"
+                      className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs px-2 py-1"
                     >
                       {product.category === 'jersey' ? 'Jersey' : 'Cleats'}
                     </Badge>
-                    <div className="absolute top-3 right-3 bg-black/20 backdrop-blur-sm rounded-full p-1.5">
+                    <div className="absolute top-2 right-2 bg-black/20 backdrop-blur-sm rounded-full p-1">
                       {product.category === 'jersey' ? (
-                        <Zap className="w-4 h-4 text-white" weight="bold" />
+                        <Zap className="w-3 h-3 text-white" weight="bold" />
                       ) : (
-                        <Activity className="w-4 h-4 text-white" weight="bold" />
+                        <Activity className="w-3 h-3 text-white" weight="bold" />
                       )}
                     </div>
                   </div>
                 </CardHeader>
                 
-                <CardContent className="p-4 flex-1 flex flex-col">
-                  <div className="flex items-start justify-between mb-3">
-                    <CardTitle className="text-base font-bold leading-tight flex-1 mr-3">{product.name}</CardTitle>
-                    <span className="text-xl font-bold text-primary whitespace-nowrap">${product.price}</span>
+                <CardContent className="p-3 md:p-4 flex-1 flex flex-col">
+                  <div className="flex items-start justify-between mb-2">
+                    <CardTitle className="text-sm md:text-base font-bold leading-tight flex-1 mr-2">{product.name}</CardTitle>
+                    <span className="text-lg md:text-xl font-bold text-primary whitespace-nowrap">${product.price}</span>
                   </div>
                   
-                  <CardDescription className="text-sm mb-3 line-clamp-2 text-muted-foreground">
+                  <CardDescription className="text-xs md:text-sm mb-3 line-clamp-2 text-muted-foreground">
                     {product.description}
                   </CardDescription>
                   
-                  <div className="flex flex-wrap gap-1.5 mb-4">
+                  <div className="flex flex-wrap gap-1 mb-3">
                     {product.features.slice(0, 2).map((feature) => (
-                      <Badge key={feature} variant="secondary" className="text-xs py-1 px-2">
+                      <Badge key={feature} variant="secondary" className="text-xs py-0.5 px-1.5">
                         {feature}
                       </Badge>
                     ))}
                     {product.features.length > 2 && (
-                      <Badge variant="outline" className="text-xs py-1 px-2">
+                      <Badge variant="outline" className="text-xs py-0.5 px-1.5">
                         +{product.features.length - 2}
                       </Badge>
                     )}
                   </div>
                   
-                  <div className="flex space-x-2 mt-auto">
+                  <div className="flex space-x-1.5 mt-auto">
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="flex-1 h-9"
+                          className="flex-1 h-8 text-xs"
                           onClick={() => setSelectedProduct(product)}
                         >
-                          <Eye className="w-4 h-4 mr-2" />
+                          <Eye className="w-3 h-3 mr-1" />
                           View
                         </Button>
                       </DialogTrigger>
@@ -249,11 +249,11 @@ export function Products({ id }: ProductsProps) {
                     
                     <Button 
                       size="sm" 
-                      className="flex-1 h-9 bg-accent hover:bg-accent/90"
+                      className="flex-1 h-8 text-xs bg-accent hover:bg-accent/90"
                       onClick={() => addToCart(product.id)}
                     >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Add
+                      <ShoppingCart className="w-3 h-3 mr-1" />
+                      Cart
                     </Button>
                   </div>
                 </CardContent>
