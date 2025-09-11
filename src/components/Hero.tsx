@@ -67,7 +67,7 @@ export function Hero({ id, onExploreClick }: HeroProps) {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Experience the future of athletic performance with Zava's revolutionary 
-            smart jerseys and cleats equipped with advanced sensors and real-time analytics.
+            smart jerseys and cleats equipped with advanced sensor technology.
           </motion.p>
 
           <motion.div
@@ -94,19 +94,6 @@ export function Hero({ id, onExploreClick }: HeroProps) {
               Watch Demo
             </Button>
           </motion.div>
-        </motion.div>
-
-
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-16 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2" />
-          </div>
         </motion.div>
       </div>
     </section>
