@@ -137,13 +137,13 @@ export function About({ id }: AboutProps) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-16 md:mb-20"
         >
           <Card className="max-w-4xl mx-auto bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
-            <CardContent className="p-12 text-center">
-              <Rocket className="w-16 h-16 mx-auto mb-6 text-accent" weight="bold" />
-              <h3 className="text-2xl md:text-3xl font-bold mb-6">Our Mission</h3>
-              <p className="text-lg md:text-xl leading-relaxed">
+            <CardContent className="p-6 md:p-12 text-center">
+              <Rocket className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 md:mb-6 text-accent" weight="bold" />
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6">Our Mission</h3>
+              <p className="text-base md:text-lg lg:text-xl leading-relaxed">
                 To democratize elite-level athletic performance insights by making cutting-edge 
                 smart sportswear accessible to athletes at every level, from weekend warriors 
                 to Olympic champions.
@@ -158,19 +158,19 @@ export function About({ id }: AboutProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-16 md:mb-20"
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">Our Values</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-8 md:mb-12">Our Values</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {values.map((value) => (
               <motion.div key={value.title} variants={itemVariants}>
                 <Card className="text-center h-full hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-tech-gradient rounded-lg flex items-center justify-center mx-auto mb-4">
-                      <value.icon className="w-6 h-6 text-white" weight="bold" />
+                  <CardContent className="p-4 md:p-6">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-tech-gradient rounded-lg flex items-center justify-center mx-auto mb-3 md:mb-4">
+                      <value.icon className="w-5 h-5 md:w-6 md:h-6 text-white" weight="bold" />
                     </div>
-                    <h4 className="font-semibold mb-3">{value.title}</h4>
-                    <p className="text-sm text-muted-foreground">{value.description}</p>
+                    <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">{value.title}</h4>
+                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{value.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -233,23 +233,23 @@ export function About({ id }: AboutProps) {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">Leadership Team</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-8 md:mb-12">Leadership Team</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {team.map((member) => (
               <motion.div key={member.name} variants={itemVariants}>
                 <Card className="hover:shadow-xl transition-all duration-300 group">
-                  <CardContent className="p-6 text-center">
-                    <div className="relative mb-4">
+                  <CardContent className="p-4 md:p-6 text-center">
+                    <div className="relative mb-3 md:mb-4">
                       <img
                         src={member.image}
                         alt={member.name}
-                        className="w-24 h-24 rounded-full mx-auto object-cover group-hover:scale-105 transition-transform"
+                        className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto object-cover group-hover:scale-105 transition-transform"
                       />
                       <div className="absolute inset-0 rounded-full bg-gradient-to-t from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
-                    <h4 className="font-semibold text-lg mb-1">{member.name}</h4>
-                    <p className="text-accent font-medium mb-3">{member.role}</p>
-                    <p className="text-sm text-muted-foreground">{member.background}</p>
+                    <h4 className="font-semibold text-base md:text-lg mb-1">{member.name}</h4>
+                    <p className="text-accent font-medium mb-2 md:mb-3 text-sm md:text-base">{member.role}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{member.background}</p>
                   </CardContent>
                 </Card>
               </motion.div>

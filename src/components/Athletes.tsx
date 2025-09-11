@@ -131,7 +131,7 @@ export function Athletes({ id }: AthletesProps) {
                 <CardContent className="p-0">
                   <div className="grid grid-cols-1 lg:grid-cols-2">
                     {/* Athlete Image/Video */}
-                    <div className="relative h-96 lg:h-auto">
+                    <div className="relative h-80 lg:h-auto">
                       <img
                         src={athletes[currentIndex].image}
                         alt={athletes[currentIndex].name}
@@ -143,50 +143,50 @@ export function Athletes({ id }: AthletesProps) {
                       <div className="absolute inset-0 flex items-center justify-center">
                         <Button
                           size="lg"
-                          className="bg-accent/90 hover:bg-accent text-accent-foreground rounded-full w-16 h-16 p-0"
+                          className="bg-accent/90 hover:bg-accent text-accent-foreground rounded-full w-14 h-14 p-0"
                         >
-                          <Play className="w-6 h-6" weight="fill" />
+                          <Play className="w-5 h-5" weight="fill" />
                         </Button>
                       </div>
 
                       {/* Athlete Info Overlay */}
-                      <div className="absolute bottom-6 left-6 text-white">
-                        <h3 className="text-2xl font-bold mb-1">{athletes[currentIndex].name}</h3>
-                        <p className="text-white/90">{athletes[currentIndex].sport}</p>
-                        <p className="text-sm text-white/70">{athletes[currentIndex].team}</p>
+                      <div className="absolute bottom-4 left-4 text-white">
+                        <h3 className="text-xl lg:text-2xl font-bold mb-1">{athletes[currentIndex].name}</h3>
+                        <p className="text-white/90 text-sm lg:text-base">{athletes[currentIndex].sport}</p>
+                        <p className="text-xs lg:text-sm text-white/70">{athletes[currentIndex].team}</p>
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="p-8 lg:p-12 flex flex-col justify-center">
-                      <Quote className="w-8 h-8 text-accent mb-4" weight="fill" />
+                    <div className="p-6 lg:p-8 flex flex-col justify-center">
+                      <Quote className="w-6 h-6 lg:w-8 lg:h-8 text-accent mb-3 lg:mb-4" weight="fill" />
                       
-                      <blockquote className="text-xl lg:text-2xl font-medium text-foreground mb-6 leading-relaxed">
+                      <blockquote className="text-lg lg:text-xl font-medium text-foreground mb-4 lg:mb-6 leading-relaxed">
                         "{athletes[currentIndex].quote}"
                       </blockquote>
                       
-                      <p className="text-muted-foreground mb-8">
+                      <p className="text-sm lg:text-base text-muted-foreground mb-6 lg:mb-8">
                         {athletes[currentIndex].testimony}
                       </p>
 
                       {/* Performance Stats */}
-                      <div className="flex items-center space-x-6 mb-6">
+                      <div className="flex items-center space-x-4 lg:space-x-6 mb-4 lg:mb-6">
                         <div className="text-center">
-                          <div className="text-3xl font-bold text-accent">
+                          <div className="text-2xl lg:text-3xl font-bold text-accent">
                             {athletes[currentIndex].stats.improvement}
                           </div>
-                          <div className="text-sm text-muted-foreground">
+                          <div className="text-xs lg:text-sm text-muted-foreground">
                             {athletes[currentIndex].stats.metric}
                           </div>
                         </div>
                         <div className="flex space-x-1">
                           {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-5 h-5 text-yellow-400" weight="fill" />
+                            <Star key={i} className="w-4 h-4 lg:w-5 lg:h-5 text-yellow-400" weight="fill" />
                           ))}
                         </div>
                       </div>
 
-                      <Badge variant="secondary" className="w-fit">
+                      <Badge variant="secondary" className="w-fit text-xs lg:text-sm">
                         {athletes[currentIndex].sport} Athlete
                       </Badge>
                     </div>
@@ -217,12 +217,12 @@ export function Athletes({ id }: AthletesProps) {
         </div>
 
         {/* Thumbnail Navigation */}
-        <div className="flex justify-center space-x-4 mb-12">
+        <div className="flex justify-center space-x-2 md:space-x-4 mb-12">
           {athletes.map((athlete, index) => (
             <button
               key={athlete.id}
               onClick={() => goToSlide(index)}
-              className={`relative w-16 h-16 rounded-full overflow-hidden border-2 transition-all ${
+              className={`relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 transition-all ${
                 index === currentIndex 
                   ? 'border-accent scale-110' 
                   : 'border-border hover:border-accent/50'
@@ -243,32 +243,32 @@ export function Athletes({ id }: AthletesProps) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
         >
           {athletes.slice(0, 3).map((athlete) => (
             <Card key={athlete.id} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4 mb-4">
+              <CardContent className="p-4 md:p-6">
+                <div className="flex items-center space-x-3 md:space-x-4 mb-3 md:mb-4">
                   <img
                     src={athlete.image}
                     alt={athlete.name}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
                   />
                   <div>
-                    <h4 className="font-semibold">{athlete.name}</h4>
-                    <p className="text-sm text-muted-foreground">{athlete.sport}</p>
+                    <h4 className="font-semibold text-sm md:text-base">{athlete.name}</h4>
+                    <p className="text-xs md:text-sm text-muted-foreground">{athlete.sport}</p>
                   </div>
                 </div>
                 
-                <Quote className="w-6 h-6 text-accent mb-2" weight="fill" />
-                <p className="text-sm text-muted-foreground italic">
+                <Quote className="w-5 h-5 md:w-6 md:h-6 text-accent mb-2" weight="fill" />
+                <p className="text-xs md:text-sm text-muted-foreground italic line-clamp-3">
                   "{athlete.quote}"
                 </p>
                 
-                <div className="flex justify-between items-center mt-4">
+                <div className="flex justify-between items-center mt-3 md:mt-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400" weight="fill" />
+                      <Star key={i} className="w-3 h-3 md:w-4 md:h-4 text-yellow-400" weight="fill" />
                     ))}
                   </div>
                   <Badge variant="outline" className="text-xs">

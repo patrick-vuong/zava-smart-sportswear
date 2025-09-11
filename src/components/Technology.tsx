@@ -138,18 +138,18 @@ export function Technology({ id }: TechnologyProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
         >
           {techSpecs.map((spec) => (
             <motion.div key={spec.title} variants={itemVariants}>
               <Card className="text-center h-full hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-tech-gradient rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <spec.icon className="w-6 h-6 text-white" weight="bold" />
+                <CardContent className="p-4">
+                  <div className="w-10 h-10 bg-tech-gradient rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <spec.icon className="w-5 h-5 text-white" weight="bold" />
                   </div>
-                  <h3 className="font-semibold mb-2">{spec.title}</h3>
-                  <div className="text-2xl font-bold text-accent mb-2">{spec.value}</div>
-                  <p className="text-sm text-muted-foreground">{spec.description}</p>
+                  <h3 className="font-semibold mb-2 text-sm">{spec.title}</h3>
+                  <div className="text-xl font-bold text-accent mb-2">{spec.value}</div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{spec.description}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -174,17 +174,17 @@ export function Technology({ id }: TechnologyProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
           >
             {jerseyFeatures.map((feature) => (
               <motion.div key={feature.title} variants={itemVariants}>
                 <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
-                      <feature.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" weight="bold" />
+                  <CardContent className="p-4">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-accent/10 transition-colors">
+                      <feature.icon className="w-5 h-5 text-primary group-hover:text-accent transition-colors" weight="bold" />
                     </div>
-                    <h4 className="font-semibold mb-3">{feature.title}</h4>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    <h4 className="font-semibold mb-2 text-sm">{feature.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -209,17 +209,17 @@ export function Technology({ id }: TechnologyProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
           >
             {cleatsFeatures.map((feature) => (
               <motion.div key={feature.title} variants={itemVariants}>
                 <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
-                      <feature.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" weight="bold" />
+                  <CardContent className="p-4">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-accent/10 transition-colors">
+                      <feature.icon className="w-5 h-5 text-primary group-hover:text-accent transition-colors" weight="bold" />
                     </div>
-                    <h4 className="font-semibold mb-3">{feature.title}</h4>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    <h4 className="font-semibold mb-2 text-sm">{feature.title}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>

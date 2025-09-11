@@ -97,46 +97,46 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-12">
+      <footer className="bg-primary text-primary-foreground py-8 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-6 h-6 bg-accent rounded flex items-center justify-center">
-                  <Zap className="w-4 h-4 text-accent-foreground" weight="bold" />
+              <div className="flex items-center space-x-2 mb-3 md:mb-4">
+                <div className="w-5 h-5 md:w-6 md:h-6 bg-accent rounded flex items-center justify-center">
+                  <Zap className="w-3 h-3 md:w-4 md:h-4 text-accent-foreground" weight="bold" />
                 </div>
-                <span className="text-lg font-bold">ZAVA</span>
+                <span className="text-base md:text-lg font-bold">ZAVA</span>
               </div>
-              <p className="text-sm text-primary-foreground/80">
+              <p className="text-xs md:text-sm text-primary-foreground/80">
                 Unleashing athletic potential through smart sportswear technology.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">Products</h4>
-              <ul className="space-y-2 text-sm text-primary-foreground/80">
+              <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Products</h4>
+              <ul className="space-y-1 md:space-y-2 text-xs md:text-sm text-primary-foreground/80">
                 <li>Smart Jerseys</li>
                 <li>Smart Cleats</li>
                 <li>Accessories</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">Technology</h4>
-              <ul className="space-y-2 text-sm text-primary-foreground/80">
+              <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Technology</h4>
+              <ul className="space-y-1 md:space-y-2 text-xs md:text-sm text-primary-foreground/80">
                 <li>Sensor Integration</li>
                 <li>Performance Analytics</li>
                 <li>Mobile App</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">Support</h4>
-              <ul className="space-y-2 text-sm text-primary-foreground/80">
+              <h4 className="font-semibold mb-2 md:mb-3 text-sm md:text-base">Support</h4>
+              <ul className="space-y-1 md:space-y-2 text-xs md:text-sm text-primary-foreground/80">
                 <li>Contact Us</li>
                 <li>Documentation</li>
                 <li>Community</li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm text-primary-foreground/60">
+          <div className="border-t border-primary-foreground/20 mt-6 md:mt-8 pt-6 md:pt-8 text-center text-xs md:text-sm text-primary-foreground/60">
             <p>&copy; 2024 Zava. All rights reserved.</p>
           </div>
         </div>

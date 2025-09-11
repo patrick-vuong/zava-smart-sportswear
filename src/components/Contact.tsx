@@ -139,7 +139,7 @@ export function Contact({ id }: ContactProps) {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -149,38 +149,40 @@ export function Contact({ id }: ContactProps) {
           >
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl">Send us a Message</CardTitle>
+                <CardTitle className="text-xl md:text-2xl">Send us a Message</CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
+                      <Label htmlFor="name" className="text-sm">Full Name *</Label>
                       <Input
                         id="name"
                         value={formData.name}
                         onChange={(e) => handleInputChange('name', e.target.value)}
                         placeholder="Your full name"
+                        className="h-9"
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email" className="text-sm">Email Address *</Label>
                       <Input
                         id="email"
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
                         placeholder="your.email@example.com"
+                        className="h-9"
                         required
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="inquiry-type">Inquiry Type *</Label>
+                    <Label htmlFor="inquiry-type" className="text-sm">Inquiry Type *</Label>
                     <Select value={formData.inquiryType} onValueChange={(value) => handleInputChange('inquiryType', value)}>
-                      <SelectTrigger id="inquiry-type">
+                      <SelectTrigger id="inquiry-type" className="h-9">
                         <SelectValue placeholder="Select inquiry type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -195,31 +197,33 @@ export function Contact({ id }: ContactProps) {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subject *</Label>
+                    <Label htmlFor="subject" className="text-sm">Subject *</Label>
                     <Input
                       id="subject"
                       value={formData.subject}
                       onChange={(e) => handleInputChange('subject', e.target.value)}
                       placeholder="Brief subject of your inquiry"
+                      className="h-9"
                       required
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Message *</Label>
+                    <Label htmlFor="message" className="text-sm">Message *</Label>
                     <Textarea
                       id="message"
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       placeholder="Tell us more about your inquiry..."
-                      rows={5}
+                      rows={4}
+                      className="resize-none"
                       required
                     />
                   </div>
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-accent hover:bg-accent/90"
+                    className="w-full bg-accent hover:bg-accent/90 h-10"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -245,19 +249,19 @@ export function Contact({ id }: ContactProps) {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-4 md:space-y-6"
           >
             {contactInfo.map((info) => (
               <Card key={info.title} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-tech-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-6 h-6 text-white" weight="bold" />
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex items-start space-x-3 md:space-x-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-tech-gradient rounded-lg flex items-center justify-center flex-shrink-0">
+                      <info.icon className="w-5 h-5 md:w-6 md:h-6 text-white" weight="bold" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg mb-2">{info.title}</h3>
+                      <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">{info.title}</h3>
                       {info.details.map((detail, index) => (
-                        <p key={index} className="text-muted-foreground mb-1">
+                        <p key={index} className="text-sm md:text-base text-muted-foreground mb-1">
                           {detail}
                         </p>
                       ))}
@@ -270,11 +274,11 @@ export function Contact({ id }: ContactProps) {
             {/* Interactive Map Placeholder */}
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-0">
-                <div className="h-64 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                <div className="h-48 md:h-64 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
                   <div className="text-center">
-                    <MapPin className="w-12 h-12 text-accent mx-auto mb-3" weight="bold" />
-                    <h3 className="font-semibold text-lg mb-2">Visit Our HQ</h3>
-                    <p className="text-muted-foreground">
+                    <MapPin className="w-10 h-10 md:w-12 md:h-12 text-accent mx-auto mb-2 md:mb-3" weight="bold" />
+                    <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Visit Our HQ</h3>
+                    <p className="text-sm md:text-base text-muted-foreground">
                       Interactive map coming soon
                     </p>
                   </div>
@@ -284,24 +288,24 @@ export function Contact({ id }: ContactProps) {
 
             {/* Quick Stats */}
             <Card className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-lg mb-4 text-center">Why Choose Zava?</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-accent" weight="fill" />
-                    <span>Trusted by 500+ professional athletes</span>
+              <CardContent className="p-4 md:p-6">
+                <h3 className="font-semibold text-base md:text-lg mb-3 md:mb-4 text-center">Why Choose Zava?</h3>
+                <div className="space-y-2 md:space-y-3">
+                  <div className="flex items-center space-x-2 md:space-x-3">
+                    <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" weight="fill" />
+                    <span className="text-sm md:text-base">Trusted by 500+ professional athletes</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-accent" weight="fill" />
-                    <span>24/7 technical support</span>
+                  <div className="flex items-center space-x-2 md:space-x-3">
+                    <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" weight="fill" />
+                    <span className="text-sm md:text-base">24/7 technical support</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-accent" weight="fill" />
-                    <span>30-day money-back guarantee</span>
+                  <div className="flex items-center space-x-2 md:space-x-3">
+                    <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" weight="fill" />
+                    <span className="text-sm md:text-base">30-day money-back guarantee</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-accent" weight="fill" />
-                    <span>Worldwide shipping available</span>
+                  <div className="flex items-center space-x-2 md:space-x-3">
+                    <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0" weight="fill" />
+                    <span className="text-sm md:text-base">Worldwide shipping available</span>
                   </div>
                 </div>
               </CardContent>
