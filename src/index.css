@@ -58,6 +58,7 @@
   --radius-2xl: calc(var(--radius) * 3);
   --radius-full: 9999px;
 
+  --spacing: 1rem;
   --spacing-0: 0px;
   --spacing-1: 0.25rem;
   --spacing-2: 0.5rem;
@@ -75,13 +76,9 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
-}
-
-/* Custom utilities for Zava brand */
-.font-inter {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 .hero-gradient {
