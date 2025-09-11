@@ -96,37 +96,7 @@ export function Hero({ id, onExploreClick }: HeroProps) {
           </motion.div>
         </motion.div>
 
-        {/* Floating Cards Preview */}
-        <motion.div
-          className="absolute bottom-20 left-1/2 transform -translate-x-1/2 hidden lg:block"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-        >
-          <div className="flex space-x-4">
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-2">
-                <Play className="w-6 h-6 text-accent-foreground" weight="fill" />
-              </div>
-              <p className="text-sm font-medium text-white">Real-time Analytics</p>
-            </motion.div>
-            
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-2">
-                <ArrowRight className="w-6 h-6 text-accent-foreground" weight="bold" />
-              </div>
-              <p className="text-sm font-medium text-white">Performance Tracking</p>
-            </motion.div>
-          </div>
-        </motion.div>
+
 
         {/* Scroll Indicator */}
         <motion.div
