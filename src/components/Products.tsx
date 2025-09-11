@@ -142,70 +142,70 @@ export function Products({ id }: ProductsProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {products.map((product) => (
             <motion.div key={product.id} variants={itemVariants}>
-              <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/50 h-full flex flex-col">
+              <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/50 h-full flex flex-col overflow-hidden">
                 <CardHeader className="p-0">
-                  <div className="relative overflow-hidden rounded-t-lg">
+                  <div className="relative overflow-hidden">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <Badge 
-                      className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs px-2 py-1"
+                      className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-2.5 py-1"
                     >
                       {product.category === 'jersey' ? 'Jersey' : 'Cleats'}
                     </Badge>
-                    <div className="absolute top-2 right-2">
+                    <div className="absolute top-3 right-3 bg-black/20 backdrop-blur-sm rounded-full p-1.5">
                       {product.category === 'jersey' ? (
-                        <Zap className="w-4 h-4 text-white drop-shadow" />
+                        <Zap className="w-4 h-4 text-white" weight="bold" />
                       ) : (
-                        <Activity className="w-4 h-4 text-white drop-shadow" />
+                        <Activity className="w-4 h-4 text-white" weight="bold" />
                       )}
                     </div>
                   </div>
                 </CardHeader>
                 
-                <CardContent className="p-3 flex-1 flex flex-col">
-                  <div className="flex items-start justify-between mb-2">
-                    <CardTitle className="text-sm font-bold leading-tight flex-1 mr-2">{product.name}</CardTitle>
-                    <span className="text-lg font-bold text-primary whitespace-nowrap">${product.price}</span>
+                <CardContent className="p-4 flex-1 flex flex-col">
+                  <div className="flex items-start justify-between mb-3">
+                    <CardTitle className="text-base font-bold leading-tight flex-1 mr-3">{product.name}</CardTitle>
+                    <span className="text-xl font-bold text-primary whitespace-nowrap">${product.price}</span>
                   </div>
                   
-                  <CardDescription className="text-xs mb-2 line-clamp-2 text-muted-foreground flex-1">
+                  <CardDescription className="text-sm mb-3 line-clamp-2 text-muted-foreground">
                     {product.description}
                   </CardDescription>
                   
-                  <div className="flex flex-wrap gap-1 mb-3">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
                     {product.features.slice(0, 2).map((feature) => (
-                      <Badge key={feature} variant="secondary" className="text-xs py-0.5 px-1.5 leading-none">
+                      <Badge key={feature} variant="secondary" className="text-xs py-1 px-2">
                         {feature}
                       </Badge>
                     ))}
                     {product.features.length > 2 && (
-                      <Badge variant="outline" className="text-xs py-0.5 px-1.5 leading-none">
+                      <Badge variant="outline" className="text-xs py-1 px-2">
                         +{product.features.length - 2}
                       </Badge>
                     )}
                   </div>
                   
-                  <div className="flex space-x-1.5 mt-auto">
+                  <div className="flex space-x-2 mt-auto">
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="flex-1 h-7 text-xs px-2"
+                          className="flex-1 h-9"
                           onClick={() => setSelectedProduct(product)}
                         >
-                          <Eye className="w-3 h-3 mr-1" />
+                          <Eye className="w-4 h-4 mr-2" />
                           View
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="max-w-2xl">
+                      <DialogContent className="max-w-3xl">
                         <DialogHeader>
                           <DialogTitle className="text-2xl">{selectedProduct?.name}</DialogTitle>
                           <DialogDescription className="text-lg">
@@ -249,11 +249,11 @@ export function Products({ id }: ProductsProps) {
                     
                     <Button 
                       size="sm" 
-                      className="flex-1 h-7 text-xs px-2 bg-accent hover:bg-accent/90"
+                      className="flex-1 h-9 bg-accent hover:bg-accent/90"
                       onClick={() => addToCart(product.id)}
                     >
-                      <ShoppingCart className="w-3 h-3 mr-1" />
-                      Cart
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Add
                     </Button>
                   </div>
                 </CardContent>
