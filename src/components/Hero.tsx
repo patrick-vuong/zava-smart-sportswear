@@ -13,33 +13,7 @@ export function Hero({ id, onExploreClick }: HeroProps) {
       {/* Background Gradient */}
       <div className="absolute inset-0 hero-gradient" />
       
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-accent/20"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-60 h-60 rounded-full bg-accent/10"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
+
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
@@ -67,7 +41,7 @@ export function Hero({ id, onExploreClick }: HeroProps) {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Experience the future of athletic performance with Zava's revolutionary 
-            smart jerseys and cleats equipped with advanced sensor technology.
+            smart jerseys and cleats designed for elite athletes.
           </motion.p>
 
           <motion.div
