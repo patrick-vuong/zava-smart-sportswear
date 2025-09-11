@@ -92,7 +92,7 @@ npm run dev
 ## 🌐 Live Demo
 
 Experience Zava Smart Sportswear in action!  
-[View the Live Demo](https://patrick-vuong.github.io/zava-smart-sportswea/)
+[View the Live Demo](https://patrick-vuong.github.io/zava-smart-sportswear/)
 
 ## 📱 Responsive Design
 
