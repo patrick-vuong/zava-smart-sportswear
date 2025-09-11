@@ -146,8 +146,8 @@ export function Products({ id }: ProductsProps) {
         >
           {products.map((product) => (
             <motion.div key={product.id} variants={itemVariants}>
-              <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full">
-                <CardContent className="p-6 text-center">
+              <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full flex flex-col">
+                <CardContent className="p-6 text-center flex flex-col h-full">
                   {/* Icon */}
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/10 transition-colors">
                     {product.category === 'jersey' ? (
@@ -161,28 +161,23 @@ export function Products({ id }: ProductsProps) {
                   <h3 className="font-bold text-lg mb-2">{product.name}</h3>
                   
                   {/* Price */}
-                  <div className="text-2xl font-bold text-accent mb-3">${product.price}</div>
+                  <div className="text-xl font-bold text-accent mb-3">${product.price}</div>
                   
                   {/* Description */}
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{product.description}</p>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3 flex-grow">{product.description}</p>
                   
-                  {/* Category Badge */}
-                  <Badge variant="secondary" className="mb-4">
-                    {product.category === 'jersey' ? 'Smart Jersey' : 'Smart Cleats'}
-                  </Badge>
-                  
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 mt-auto">
+                  {/* Action Buttons - Fixed at bottom */}
+                  <div className="mt-auto space-y-2">
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="flex-1"
+                          className="w-full"
                           onClick={() => setSelectedProduct(product)}
                         >
                           <Eye className="w-4 h-4 mr-2" />
-                          Details
+                          View Details
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-3xl">
@@ -229,7 +224,7 @@ export function Products({ id }: ProductsProps) {
                     
                     <Button 
                       size="sm" 
-                      className="flex-1 bg-accent hover:bg-accent/90"
+                      className="w-full bg-accent hover:bg-accent/90"
                       onClick={() => addToCart(product.id)}
                     >
                       <ShoppingCart className="w-4 h-4 mr-2" />
