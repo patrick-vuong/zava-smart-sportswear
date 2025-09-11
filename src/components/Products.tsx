@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { ShoppingCart, Eye, Zap, Activity } from '@phosphor-icons/react'
+import { ShoppingCart, Eye, Zap, Activity, TShirt, Sneaker } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { useKV } from '@github/spark/hooks'
 
@@ -33,7 +33,7 @@ export function Products({ id }: ProductsProps) {
       category: 'jersey',
       price: 299,
       image: '/api/placeholder/400/500',
-      description: 'Professional-grade smart jersey with integrated biometric sensors and moisture-wicking fabric.',
+      description: 'Professional-grade smart jersey with integrated biometric sensors.',
       features: ['Heart Rate Monitoring', 'Temperature Regulation', 'Motion Tracking', 'Sweat Analysis'],
       specs: {
         'Material': 'Advanced Polyester Blend',
@@ -49,7 +49,7 @@ export function Products({ id }: ProductsProps) {
       category: 'cleats',
       price: 399,
       image: '/api/placeholder/400/500',
-      description: 'Revolutionary smart cleats with pressure sensors and gait analysis technology.',
+      description: 'Revolutionary smart cleats with pressure sensors and gait analysis.',
       features: ['Pressure Mapping', 'Gait Analysis', 'Speed Tracking', 'Balance Optimization'],
       specs: {
         'Material': 'Carbon Fiber & Synthetic',
@@ -65,7 +65,7 @@ export function Products({ id }: ProductsProps) {
       category: 'jersey',
       price: 199,
       image: '/api/placeholder/400/500',
-      description: 'Training-focused smart jersey perfect for daily workouts and practice sessions.',
+      description: 'Training-focused smart jersey for daily workouts and practice.',
       features: ['Basic Monitoring', 'Comfort Fit', 'Quick Dry', 'Team Sync'],
       specs: {
         'Material': 'Moisture-Wicking Polyester',
@@ -81,7 +81,7 @@ export function Products({ id }: ProductsProps) {
       category: 'cleats',
       price: 299,
       image: '/api/placeholder/400/500',
-      description: 'Lightweight smart cleats designed for maximum speed and agility tracking.',
+      description: 'Lightweight smart cleats designed for maximum speed and agility.',
       features: ['Sprint Analysis', 'Acceleration Tracking', 'Direction Changes', 'Ground Contact'],
       specs: {
         'Material': 'Lightweight Synthetic',
@@ -119,14 +119,14 @@ export function Products({ id }: ProductsProps) {
   }
 
   return (
-    <section id={id} className="py-16 bg-background">
+    <section id={id} className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Smart Sportswear Collection
@@ -142,67 +142,47 @@ export function Products({ id }: ProductsProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {products.map((product) => (
             <motion.div key={product.id} variants={itemVariants}>
-              <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/50 h-full flex flex-col overflow-hidden">
-                <CardHeader className="p-0">
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-24 md:h-28 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <Badge 
-                      className="absolute top-1.5 left-1.5 bg-primary text-primary-foreground text-xs px-1.5 py-0.5"
-                    >
-                      {product.category === 'jersey' ? 'Jersey' : 'Cleats'}
-                    </Badge>
-                    <div className="absolute top-1.5 right-1.5 bg-black/20 backdrop-blur-sm rounded-full p-1">
-                      {product.category === 'jersey' ? (
-                        <Zap className="w-3 h-3 text-white" weight="bold" />
-                      ) : (
-                        <Activity className="w-3 h-3 text-white" weight="bold" />
-                      )}
-                    </div>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="p-3 flex-1 flex flex-col">
-                  <div className="flex items-start justify-between mb-2">
-                    <CardTitle className="text-sm font-bold leading-tight flex-1 mr-2">{product.name}</CardTitle>
-                    <span className="text-base font-bold text-primary whitespace-nowrap">${product.price}</span>
-                  </div>
-                  
-                  <CardDescription className="text-xs mb-2 line-clamp-2 text-muted-foreground">
-                    {product.description}
-                  </CardDescription>
-                  
-                  <div className="flex flex-wrap gap-1 mb-2">
-                    {product.features.slice(0, 2).map((feature) => (
-                      <Badge key={feature} variant="secondary" className="text-xs py-0.5 px-1">
-                        {feature}
-                      </Badge>
-                    ))}
-                    {product.features.length > 2 && (
-                      <Badge variant="outline" className="text-xs py-0.5 px-1">
-                        +{product.features.length - 2}
-                      </Badge>
+              <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full">
+                <CardContent className="p-6 text-center">
+                  {/* Icon */}
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/10 transition-colors">
+                    {product.category === 'jersey' ? (
+                      <TShirt className="w-6 h-6 text-primary group-hover:text-accent transition-colors" weight="bold" />
+                    ) : (
+                      <Sneaker className="w-6 h-6 text-primary group-hover:text-accent transition-colors" weight="bold" />
                     )}
                   </div>
                   
-                  <div className="flex space-x-1.5 mt-auto">
+                  {/* Title */}
+                  <h3 className="font-bold text-lg mb-2">{product.name}</h3>
+                  
+                  {/* Price */}
+                  <div className="text-2xl font-bold text-accent mb-3">${product.price}</div>
+                  
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{product.description}</p>
+                  
+                  {/* Category Badge */}
+                  <Badge variant="secondary" className="mb-4">
+                    {product.category === 'jersey' ? 'Smart Jersey' : 'Smart Cleats'}
+                  </Badge>
+                  
+                  {/* Action Buttons */}
+                  <div className="flex gap-2 mt-auto">
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="flex-1 h-7 text-xs"
+                          className="flex-1"
                           onClick={() => setSelectedProduct(product)}
                         >
-                          <Eye className="w-3 h-3 mr-1" />
-                          View
+                          <Eye className="w-4 h-4 mr-2" />
+                          Details
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-3xl">
@@ -249,11 +229,11 @@ export function Products({ id }: ProductsProps) {
                     
                     <Button 
                       size="sm" 
-                      className="flex-1 h-7 text-xs bg-accent hover:bg-accent/90"
+                      className="flex-1 bg-accent hover:bg-accent/90"
                       onClick={() => addToCart(product.id)}
                     >
-                      <ShoppingCart className="w-3 h-3 mr-1" />
-                      Cart
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Add to Cart
                     </Button>
                   </div>
                 </CardContent>
