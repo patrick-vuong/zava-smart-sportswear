@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { ShoppingCart, Eye, Zap, Shield, Activity, Bluetooth } from '@phosphor-icons/react'
+import { ShoppingCart, Eye, Zap, Activity } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { useKV } from '@github/spark/hooks'
 
@@ -152,46 +152,44 @@ export function Products({ id }: ProductsProps) {
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <Badge 
-                      className="absolute top-4 left-4 bg-primary text-primary-foreground"
+                      className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs"
                     >
-                      {product.category === 'jersey' ? 'Smart Jersey' : 'Smart Cleats'}
+                      {product.category === 'jersey' ? 'Jersey' : 'Cleats'}
                     </Badge>
+                    <div className="absolute top-3 right-3 flex items-center space-x-1">
+                      {product.category === 'jersey' ? (
+                        <Zap className="w-4 h-4 text-white drop-shadow" />
+                      ) : (
+                        <Activity className="w-4 h-4 text-white drop-shadow" />
+                      )}
+                    </div>
                   </div>
                 </CardHeader>
                 
-                <CardContent className="p-6">
-                  <CardTitle className="text-lg font-bold mb-2">{product.name}</CardTitle>
-                  <CardDescription className="text-sm mb-4 line-clamp-2">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between mb-2">
+                    <CardTitle className="text-base font-bold leading-tight">{product.name}</CardTitle>
+                    <span className="text-xl font-bold text-primary">${product.price}</span>
+                  </div>
+                  
+                  <CardDescription className="text-sm mb-3 line-clamp-2 text-muted-foreground">
                     {product.description}
                   </CardDescription>
                   
-                  <div className="flex flex-wrap gap-1 mb-4">
+                  <div className="flex flex-wrap gap-1 mb-3">
                     {product.features.slice(0, 2).map((feature) => (
-                      <Badge key={feature} variant="secondary" className="text-xs">
+                      <Badge key={feature} variant="secondary" className="text-xs py-0.5">
                         {feature}
                       </Badge>
                     ))}
                     {product.features.length > 2 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{product.features.length - 2} more
+                      <Badge variant="outline" className="text-xs py-0.5">
+                        +{product.features.length - 2}
                       </Badge>
                     )}
-                  </div>
-                  
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-primary">${product.price}</span>
-                    <div className="flex items-center space-x-1">
-                      {product.category === 'jersey' ? (
-                        <Zap className="w-4 h-4 text-accent" />
-                      ) : (
-                        <Activity className="w-4 h-4 text-accent" />
-                      )}
-                      <Bluetooth className="w-4 h-4 text-muted-foreground" />
-                      <Shield className="w-4 h-4 text-muted-foreground" />
-                    </div>
                   </div>
                   
                   <div className="flex space-x-2">
@@ -200,11 +198,11 @@ export function Products({ id }: ProductsProps) {
                         <Button 
                           variant="outline" 
                           size="sm" 
-                          className="flex-1"
+                          className="flex-1 h-8"
                           onClick={() => setSelectedProduct(product)}
                         >
-                          <Eye className="w-4 h-4 mr-2" />
-                          Details
+                          <Eye className="w-3 h-3 mr-1" />
+                          View
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-2xl">
@@ -251,11 +249,11 @@ export function Products({ id }: ProductsProps) {
                     
                     <Button 
                       size="sm" 
-                      className="flex-1 bg-accent hover:bg-accent/90"
+                      className="flex-1 h-8 bg-accent hover:bg-accent/90"
                       onClick={() => addToCart(product.id)}
                     >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Add to Cart
+                      <ShoppingCart className="w-3 h-3 mr-1" />
+                      Cart
                     </Button>
                   </div>
                 </CardContent>
