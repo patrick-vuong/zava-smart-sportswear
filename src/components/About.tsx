@@ -113,7 +113,7 @@ export function About({ id }: AboutProps) {
   }
 
   return (
-    <section id={id} className="py-20 bg-muted/30">
+    <section id={id} className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
