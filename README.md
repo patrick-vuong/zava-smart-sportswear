@@ -88,11 +88,68 @@ npm run dev
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
 - `npm run optimize` - Optimize dependencies
+- `npm run test` - Run Playwright tests  
+- `npm run test:headed` - Run tests in headed mode (see browser)  
+- `npm run test:ui` - Run tests with Playwright UI  
+- `npm run test:debug` - Debug tests interactively  
+- `npm run test:report` - Show test results report
 
 ## 🌐 Live Demo
 
 Experience Zava Smart Sportswear in action!  
 [View the Live Demo](https://patrick-vuong.github.io/zava-smart-sportswear/)
+
+## 🧪 Testing
+
+This project includes comprehensive end-to-end tests using Playwright to ensure all core features work correctly across different browsers and devices.
+
+### Running Tests
+
+**Run all tests:**
+```bash
+npm run test
+```
+
+**Run tests in headed mode (see browser):**
+```bash
+npm run test:headed
+```
+
+**Run tests with interactive UI:**
+```bash
+npm run test:ui
+```
+
+**Debug tests step by step:**
+```bash
+npm run test:debug
+```
+
+**View test results:**
+```bash
+npm run test:report
+```
+
+### Test Coverage
+
+Our test suite covers:
+- ✅ Homepage loading and key elements visibility
+- ✅ Navigation functionality across all sections
+- ✅ Product showcase interactions
+- ✅ Contact form validation and submission
+- ✅ Mobile responsive design and touch interactions
+- ✅ Accessibility and keyboard navigation
+- ✅ Cross-browser compatibility (Chrome, Firefox)
+
+### CI/CD Integration
+
+Tests run automatically on:
+- Every push to main/develop branches
+- All pull requests
+- Multiple browser configurations
+- Both desktop and mobile viewports
+
+Test results and artifacts are automatically saved and can be downloaded from the GitHub Actions page.
 
 ## 📱 Responsive Design
 
