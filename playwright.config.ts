@@ -31,6 +31,17 @@ export default defineConfig({
       name: 'chromium',
       use: { 
         ...devices['Desktop Chrome'],
+        // Try to use system browser first
+        channel: process.env.CI ? undefined : 'chrome',
+      },
+    },
+    
+    // Add mobile testing
+    {
+      name: 'mobile',
+      use: { 
+        ...devices['Pixel 5'],
+        channel: process.env.CI ? undefined : 'chrome',
       },
     },
   ],
