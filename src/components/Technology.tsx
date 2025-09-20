@@ -158,50 +158,87 @@ export function Technology({ id }: TechnologyProps) {
 
         {/* Jersey Features */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="mb-16"
         >
-          {jerseyFeatures.map((feature) => (
-            <motion.div key={feature.title} variants={itemVariants}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-tech-gradient rounded-lg flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-white" weight="bold" />
-                  </div>
-                  <Badge className="mb-2">Jersey Technology</Badge>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          {/* Handwritten Jersey Title */}
+          <div className="relative mb-8">
+            <h3 className="text-4xl md:text-5xl font-bold text-accent text-center transform -rotate-1 opacity-90" 
+                style={{ 
+                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif', 
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.1)' 
+                }}>
+              Smart Jersey
+            </h3>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {jerseyFeatures.map((feature) => (
+              <motion.div key={feature.title} variants={itemVariants}>
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-tech-gradient rounded-lg flex items-center justify-center mb-4">
+                      <feature.icon className="w-6 h-6 text-white" weight="bold" />
+                    </div>
+                    <Badge className="mb-2">Jersey Technology</Badge>
+                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
 
         {/* Cleats Features */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {cleatsFeatures.map((feature) => (
-            <motion.div key={feature.title} variants={itemVariants}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-tech-gradient rounded-lg flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-white" weight="bold" />
-                  </div>
-                  <Badge className="mb-2">Cleats Technology</Badge>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          {/* Handwritten Cleats Title */}
+          <div className="relative mb-8">
+            <h3 className="text-4xl md:text-5xl font-bold text-accent text-center transform rotate-1 opacity-90" 
+                style={{ 
+                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif', 
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.1)' 
+                }}>
+              Smart Cleats
+            </h3>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {cleatsFeatures.map((feature) => (
+              <motion.div key={feature.title} variants={itemVariants}>
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-tech-gradient rounded-lg flex items-center justify-center mb-4">
+                      <feature.icon className="w-6 h-6 text-white" weight="bold" />
+                    </div>
+                    <Badge className="mb-2">Cleats Technology</Badge>
+                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </section>
