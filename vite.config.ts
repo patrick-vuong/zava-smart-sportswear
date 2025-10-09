@@ -23,4 +23,10 @@ export default defineConfig({
       '@': resolve(projectRoot, 'src')
     }
   },
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+    globals: true,
+    exclude: ['**/node_modules/**', '**/dist/**', '**/tests/**', '**/playwright/**'],
+  },
 });
