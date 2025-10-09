@@ -19,6 +19,7 @@ var logAnalyticsWorkspaceName = 'law${resourceToken}'
 var applicationInsightsName = 'ai${resourceToken}'
 var userAssignedIdentityName = 'id${resourceToken}'
 var containerAppName = 'ca${resourceToken}'
+var cosmosAccountName = 'cosmos${resourceToken}'
 
 // User-Assigned Managed Identity
 resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
@@ -130,6 +131,20 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
             cpu: json('0.5')
             memory: '1Gi'
           }
+          env: [
+            {
+              name: 'COSMOS_ENDPOINT'
+              value: cosmosDb.outputs.cosmosEndpoint
+            }
+            {
+              name: 'COSMOS_DATABASE_NAME'
+              value: cosmosDb.outputs.cosmosDatabaseName
+            }
+            {
+              name: 'AZURE_CLIENT_ID'
+              value: userAssignedIdentity.properties.clientId
+            }
+          ]
         }
       ]
       scale: {
@@ -143,8 +158,21 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
   ]
 }
 
+// Cosmos DB for smart sportswear data
+module cosmosDb 'cosmos.bicep' = {
+  name: 'cosmosDb'
+  params: {
+    cosmosAccountName: cosmosAccountName
+    location: location
+    userAssignedIdentityId: userAssignedIdentity.id
+    userAssignedIdentityPrincipalId: userAssignedIdentity.properties.principalId
+  }
+}
+
 // Required outputs for AZD
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerRegistry.properties.loginServer
 output RESOURCE_GROUP_ID string = resourceGroup().id
 output CONTAINER_APP_URL string = 'https://${containerApp.properties.configuration.ingress.fqdn}'
 output APPLICATION_INSIGHTS_CONNECTION_STRING string = applicationInsights.properties.ConnectionString
+output COSMOS_ENDPOINT string = cosmosDb.outputs.cosmosEndpoint
+output COSMOS_DATABASE_NAME string = cosmosDb.outputs.cosmosDatabaseName

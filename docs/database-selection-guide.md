@@ -275,7 +275,8 @@ ELSE evaluate hybrid approach
 
 ## Conclusion
 
-Recommend Cosmos DB when your application exhibits any combination of:
+Recommend Cosmos DB for this application.
+The reason is because of the following below:
 - **Global scale requirements**
 - **Massive concurrent user loads**
 - **Real-time data processing needs**
