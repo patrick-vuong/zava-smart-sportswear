@@ -1,16 +1,16 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { 
-  Activity, 
-  HeartStraight, 
+  ActivityIcon as Activity,
+  Heart as HeartStraight, 
   Thermometer, 
-  ChartLine, 
-  Smartphone, 
+  ChartLineUp as ChartLine, 
+  DeviceMobile as Smartphone, 
   CloudArrowUp,
   Sneaker,
   TShirt,
-  Bluetooth,
-  Battery
+  BluetoothIcon as Bluetooth,
+  BatteryFull as Battery
 } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 
@@ -156,35 +156,42 @@ export function Technology({ id }: TechnologyProps) {
           ))}
         </motion.div>
 
-        {/* Smart Jersey Features */}
+        {/* Jersey Features */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
           className="mb-16"
         >
-          <div className="flex items-center justify-center mb-8">
-            <TShirt className="w-8 h-8 text-accent mr-3" weight="bold" />
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground">Smart Jersey Technology</h3>
+          {/* Handwritten Jersey Title */}
+          <div className="relative mb-8">
+            <h3 className="text-4xl md:text-5xl font-bold text-accent text-center transform -rotate-1 opacity-90" 
+                style={{ 
+                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif', 
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.1)' 
+                }}>
+              Smart Jersey
+            </h3>
           </div>
-          
+
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {jerseyFeatures.map((feature) => (
               <motion.div key={feature.title} variants={itemVariants}>
-                <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full">
-                  <CardContent className="p-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-accent/10 transition-colors">
-                      <feature.icon className="w-5 h-5 text-primary group-hover:text-accent transition-colors" weight="bold" />
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-tech-gradient rounded-lg flex items-center justify-center mb-4">
+                      <feature.icon className="w-6 h-6 text-white" weight="bold" />
                     </div>
-                    <h4 className="font-semibold mb-2 text-sm">{feature.title}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
+                    <Badge className="mb-2">Jersey Technology</Badge>
+                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -192,73 +199,46 @@ export function Technology({ id }: TechnologyProps) {
           </motion.div>
         </motion.div>
 
-        {/* Smart Cleats Features */}
+        {/* Cleats Features */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-center mb-8">
-            <Sneaker className="w-8 h-8 text-accent mr-3" weight="bold" />
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground">Smart Cleats Technology</h3>
+          {/* Handwritten Cleats Title */}
+          <div className="relative mb-8">
+            <h3 className="text-4xl md:text-5xl font-bold text-accent text-center transform rotate-1 opacity-90" 
+                style={{ 
+                  fontFamily: 'Inter, system-ui, -apple-system, sans-serif', 
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.1)' 
+                }}>
+              Smart Cleats
+            </h3>
           </div>
-          
+
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {cleatsFeatures.map((feature) => (
               <motion.div key={feature.title} variants={itemVariants}>
-                <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full">
-                  <CardContent className="p-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-accent/10 transition-colors">
-                      <feature.icon className="w-5 h-5 text-primary group-hover:text-accent transition-colors" weight="bold" />
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-tech-gradient rounded-lg flex items-center justify-center mb-4">
+                      <feature.icon className="w-6 h-6 text-white" weight="bold" />
                     </div>
-                    <h4 className="font-semibold mb-2 text-sm">{feature.title}</h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
+                    <Badge className="mb-2">Cleats Technology</Badge>
+                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </motion.div>
-        </motion.div>
-
-        {/* Interactive Demo */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <Card className="max-w-4xl mx-auto bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
-            <CardContent className="p-8">
-              <Smartphone className="w-16 h-16 mx-auto mb-6 text-accent" weight="bold" />
-              <h3 className="text-2xl font-bold mb-4">Experience the Future of Athletic Performance</h3>
-              <p className="text-lg mb-6 text-primary-foreground/90">
-                Our mobile app provides real-time insights, personalized coaching, 
-                and team analytics to maximize your athletic potential.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Badge variant="secondary" className="text-sm px-4 py-2">
-                  Real-time Coaching
-                </Badge>
-                <Badge variant="secondary" className="text-sm px-4 py-2">
-                  Team Analytics
-                </Badge>
-                <Badge variant="secondary" className="text-sm px-4 py-2">
-                  Injury Prevention
-                </Badge>
-                <Badge variant="secondary" className="text-sm px-4 py-2">
-                  Performance Trends
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
         </motion.div>
       </div>
     </section>

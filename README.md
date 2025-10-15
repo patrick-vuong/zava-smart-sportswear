@@ -55,7 +55,7 @@ Purposeful motion that communicates innovation and energy while guiding user att
 - **State Management**: TanStack React Query  
 - **Form Handling**: React Hook Form with Zod validation
 
-## 🚀 Getting Started
+## �️ Database Architecture Recommendation
 
 ### Prerequisites  
 - Node.js (v18 or higher)  

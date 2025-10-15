@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: zava-smart-sportswear
+metadata:
+  template: zava-smart-sportswear@0.0.1-beta
+
+# Infrastructure configuration
+infra:
+  provider: bicep
+  path: infra
+
+# Services configuration
+services:
+  webapp:
+    project: .
+    language: js
+    host: containerapp
+    env:
+      - COSMOS_ENDPOINT
+      - COSMOS_DATABASE_NAME
+      - AZURE_CLIENT_ID

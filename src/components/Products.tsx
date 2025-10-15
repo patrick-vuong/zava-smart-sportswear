@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { ShoppingCart, Eye, Zap, Activity, TShirt, Sneaker } from '@phosphor-icons/react'
+import { ShoppingCart, Eye, Lightning, TShirt, Sneaker } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { useKV } from '@github/spark/hooks'
 
@@ -94,7 +94,7 @@ export function Products({ id }: ProductsProps) {
   ]
 
   const addToCart = (productId: string) => {
-    setCart(currentCart => [...currentCart, productId])
+    setCart(currentCart => [...(currentCart || []), productId])
   }
 
   const containerVariants = {
@@ -137,104 +137,227 @@ export function Products({ id }: ProductsProps) {
           </p>
         </motion.div>
 
+        {/* Smart Jersey Section */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="mb-12"
         >
-          {products.map((product) => (
-            <motion.div key={product.id} variants={itemVariants}>
-              <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full flex flex-col">
-                <CardContent className="p-6 text-center flex flex-col h-full">
-                  {/* Icon */}
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/10 transition-colors">
-                    {product.category === 'jersey' ? (
+          <div className="flex items-center justify-center mb-8">
+            <div className="flex items-center space-x-3">
+              <TShirt className="w-8 h-8 text-accent" weight="bold" />
+              <h3 className="text-2xl md:text-3xl font-bold text-accent">Smart Jersey</h3>
+            </div>
+          </div>
+          
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            {products.filter(product => product.category === 'jersey').map((product) => (
+              <motion.div key={product.id} variants={itemVariants}>
+                <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full flex flex-col">
+                  <CardContent className="p-6 text-center flex flex-col h-full">
+                    {/* Icon */}
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/10 transition-colors">
                       <TShirt className="w-6 h-6 text-primary group-hover:text-accent transition-colors" weight="bold" />
-                    ) : (
-                      <Sneaker className="w-6 h-6 text-primary group-hover:text-accent transition-colors" weight="bold" />
-                    )}
-                  </div>
-                  
-                  {/* Title */}
-                  <h3 className="font-bold text-lg mb-2">{product.name}</h3>
-                  
-                  {/* Price */}
-                  <div className="text-xl font-bold text-accent mb-3">${product.price}</div>
-                  
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3 flex-grow">{product.description}</p>
-                  
-                  {/* Action Buttons - Fixed at bottom */}
-                  <div className="mt-auto space-y-2">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          className="w-full"
-                          onClick={() => setSelectedProduct(product)}
-                        >
-                          <Eye className="w-4 h-4 mr-2" />
-                          View Details
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-3xl">
-                        <DialogHeader>
-                          <DialogTitle className="text-2xl">{selectedProduct?.name}</DialogTitle>
-                          <DialogDescription className="text-lg">
-                            {selectedProduct?.description}
-                          </DialogDescription>
-                        </DialogHeader>
-                        {selectedProduct && (
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                              <img
-                                src={selectedProduct.image}
-                                alt={selectedProduct.name}
-                                className="w-full h-64 object-cover rounded-lg"
-                              />
-                            </div>
-                            <div>
-                              <h4 className="font-semibold mb-3">Features</h4>
-                              <ul className="space-y-2 mb-4">
-                                {selectedProduct.features.map((feature) => (
-                                  <li key={feature} className="flex items-center">
-                                    <Zap className="w-4 h-4 text-accent mr-2" />
-                                    {feature}
-                                  </li>
-                                ))}
-                              </ul>
-                              
-                              <h4 className="font-semibold mb-3">Specifications</h4>
-                              <div className="space-y-2">
-                                {Object.entries(selectedProduct.specs).map(([key, value]) => (
-                                  <div key={key} className="flex justify-between text-sm">
-                                    <span className="text-muted-foreground">{key}:</span>
-                                    <span className="font-medium">{value}</span>
-                                  </div>
-                                ))}
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="font-bold text-lg mb-2">{product.name}</h3>
+                    
+                    {/* Price */}
+                    <div className="text-xl font-bold text-accent mb-3">${product.price}</div>
+                    
+                    {/* Description */}
+                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3 flex-grow">{product.description}</p>
+                    
+                    {/* Action Buttons - Fixed at bottom */}
+                    <div className="mt-auto space-y-2">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full"
+                            onClick={() => setSelectedProduct(product)}
+                          >
+                            <Eye className="w-4 h-4 mr-2" />
+                            View Details
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-3xl">
+                          <DialogHeader>
+                            <DialogTitle className="text-2xl">{selectedProduct?.name}</DialogTitle>
+                            <DialogDescription className="text-lg">
+                              {selectedProduct?.description}
+                            </DialogDescription>
+                          </DialogHeader>
+                          {selectedProduct && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <div>
+                                <img
+                                  src={selectedProduct.image}
+                                  alt={selectedProduct.name}
+                                  className="w-full h-64 object-cover rounded-lg"
+                                />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold mb-3">Features</h4>
+                                <ul className="space-y-2 mb-4">
+                                  {selectedProduct.features.map((feature) => (
+                                    <li key={feature} className="flex items-center">
+                                      <Lightning className="w-4 h-4 text-accent mr-2" />
+                                      {feature}
+                                    </li>
+                                  ))}
+                                </ul>
+                                
+                                <h4 className="font-semibold mb-3">Specifications</h4>
+                                <div className="space-y-2">
+                                  {Object.entries(selectedProduct.specs).map(([key, value]) => (
+                                    <div key={key} className="flex justify-between text-sm">
+                                      <span className="text-muted-foreground">{key}:</span>
+                                      <span className="font-medium">{value}</span>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        )}
-                      </DialogContent>
-                    </Dialog>
+                          )}
+                        </DialogContent>
+                      </Dialog>
+                      
+                      <Button 
+                        size="sm" 
+                        className="w-full bg-accent hover:bg-accent/90"
+                        onClick={() => addToCart(product.id)}
+                      >
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        Add to Cart
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Smart Cleats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex items-center justify-center mb-8">
+            <div className="flex items-center space-x-3">
+              <Sneaker className="w-8 h-8 text-accent" weight="bold" />
+              <h3 className="text-2xl md:text-3xl font-bold text-accent">Smart Cleats</h3>
+            </div>
+          </div>
+          
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            {products.filter(product => product.category === 'cleats').map((product) => (
+              <motion.div key={product.id} variants={itemVariants}>
+                <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 h-full flex flex-col">
+                  <CardContent className="p-6 text-center flex flex-col h-full">
+                    {/* Icon */}
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/10 transition-colors">
+                      <Sneaker className="w-6 h-6 text-primary group-hover:text-accent transition-colors" weight="bold" />
+                    </div>
                     
-                    <Button 
-                      size="sm" 
-                      className="w-full bg-accent hover:bg-accent/90"
-                      onClick={() => addToCart(product.id)}
-                    >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Add to Cart
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                    {/* Title */}
+                    <h3 className="font-bold text-lg mb-2">{product.name}</h3>
+                    
+                    {/* Price */}
+                    <div className="text-xl font-bold text-accent mb-3">${product.price}</div>
+                    
+                    {/* Description */}
+                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3 flex-grow">{product.description}</p>
+                    
+                    {/* Action Buttons - Fixed at bottom */}
+                    <div className="mt-auto space-y-2">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="w-full"
+                            onClick={() => setSelectedProduct(product)}
+                          >
+                            <Eye className="w-4 h-4 mr-2" />
+                            View Details
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-3xl">
+                          <DialogHeader>
+                            <DialogTitle className="text-2xl">{selectedProduct?.name}</DialogTitle>
+                            <DialogDescription className="text-lg">
+                              {selectedProduct?.description}
+                            </DialogDescription>
+                          </DialogHeader>
+                          {selectedProduct && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <div>
+                                <img
+                                  src={selectedProduct.image}
+                                  alt={selectedProduct.name}
+                                  className="w-full h-64 object-cover rounded-lg"
+                                />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold mb-3">Features</h4>
+                                <ul className="space-y-2 mb-4">
+                                  {selectedProduct.features.map((feature) => (
+                                    <li key={feature} className="flex items-center">
+                                      <Lightning className="w-4 h-4 text-accent mr-2" />
+                                      {feature}
+                                    </li>
+                                  ))}
+                                </ul>
+                                
+                                <h4 className="font-semibold mb-3">Specifications</h4>
+                                <div className="space-y-2">
+                                  {Object.entries(selectedProduct.specs).map(([key, value]) => (
+                                    <div key={key} className="flex justify-between text-sm">
+                                      <span className="text-muted-foreground">{key}:</span>
+                                      <span className="font-medium">{value}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </DialogContent>
+                      </Dialog>
+                      
+                      <Button 
+                        size="sm" 
+                        className="w-full bg-accent hover:bg-accent/90"
+                        onClick={() => addToCart(product.id)}
+                      >
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        Add to Cart
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </section>
