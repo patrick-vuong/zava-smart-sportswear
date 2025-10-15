@@ -1,0 +1,231 @@
+import { test, expect } from '@playwright/test';
+
+/**
+ * Example Test Template
+ * 
+ * This file serves as a template for creating new Playwright tests.
+ * Copy this file and modify it for your specific test scenarios.
+ */
+
+test.describe('Example Test Suite', () => {
+  // This runs before each test in this describe block
+  test.beforeEach(async ({ page }) => {
+    // Navigate to the homepage
+    await page.goto('/');
+    
+    // You can add more setup here if needed
+    // For example, logging in, setting up test data, etc.
+  });
+
+  // This runs after each test (useful for cleanup)
+  test.afterEach(async ({ page }) => {
+    // Add cleanup logic here if needed
+  });
+
+  test('should load the homepage successfully', async ({ page }) => {
+    // Arrange: Set up test conditions (if needed beyond beforeEach)
+    
+    // Act: Perform the action being tested
+    const title = await page.title();
+    
+    // Assert: Verify the expected outcome
+    expect(title).toBeTruthy();
+  });
+
+  test('should display expected element', async ({ page }) => {
+    // Example: Check for a specific element
+    const element = page.locator('nav');
+    
+    // Verify element is visible
+    await expect(element).toBeVisible();
+  });
+
+  test('should interact with button', async ({ page }) => {
+    // Example: Click a button and verify result
+    const button = page.getByRole('button', { name: /example/i });
+    
+    // Only run if button exists
+    if (await button.count() > 0) {
+      await button.click();
+      
+      // Verify the result of clicking
+      // await expect(page).toHaveURL(/expected-url/);
+    }
+  });
+
+  test('should handle form input', async ({ page }) => {
+    // Example: Fill out a form
+    const input = page.getByLabel(/search/i);
+    
+    if (await input.count() > 0) {
+      await input.fill('test value');
+      
+      // Verify input value
+      await expect(input).toHaveValue('test value');
+    }
+  });
+
+  test.describe('Nested Test Group', () => {
+    // You can nest describe blocks for better organization
+    
+    test('nested test example', async ({ page }) => {
+      // Test implementation
+      await expect(page).toBeTruthy();
+    });
+  });
+
+  // Skip a test that's not ready yet
+  test.skip('this test is not ready yet', async ({ page }) => {
+    // Test implementation
+  });
+
+  // Run only this test (useful during development)
+  test.only.skip('focus on this test during development', async ({ page }) => {
+    // Test implementation
+    // Note: Remove .only before committing!
+  });
+
+  // Mark a test as slow (increases timeout)
+  test('slow test that needs more time', async ({ page }) => {
+    test.slow(); // Triples the timeout
+    
+    // Test implementation that might take longer
+    await page.waitForTimeout(5000);
+  });
+});
+
+/**
+ * Common Patterns and Examples
+ */
+
+test.describe('Common Test Patterns', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('navigating and waiting', async ({ page }) => {
+    // Navigate to a different page
+    await page.goto('/products');
+    
+    // Wait for network to be idle
+    await page.waitForLoadState('networkidle');
+    
+    // Wait for a specific element
+    await page.waitForSelector('section#products');
+  });
+
+  test('working with text content', async ({ page }) => {
+    // Find element by text
+    const element = page.getByText('Welcome');
+    await expect(element).toBeVisible();
+    
+    // Find element by partial text
+    const partial = page.getByText(/welcome/i);
+    await expect(partial).toBeVisible();
+    
+    // Check if page contains text
+    await expect(page.locator('body')).toContainText('Welcome');
+  });
+
+  test('working with forms', async ({ page }) => {
+    // Text input
+    await page.getByLabel('Name').fill('John Doe');
+    
+    // Checkbox
+    await page.getByRole('checkbox', { name: 'Subscribe' }).check();
+    
+    // Radio button
+    await page.getByRole('radio', { name: 'Option 1' }).check();
+    
+    // Select dropdown
+    await page.getByRole('combobox').selectOption('value1');
+    
+    // File upload
+    // await page.getByLabel('Upload').setInputFiles('path/to/file.pdf');
+  });
+
+  test('working with screenshots', async ({ page }) => {
+    // Take a screenshot of the entire page
+    await page.screenshot({ path: 'test-results/screenshot.png' });
+    
+    // Take a screenshot of a specific element
+    await page.locator('nav').screenshot({ path: 'test-results/nav.png' });
+  });
+
+  test('mobile viewport testing', async ({ page }) => {
+    // Set mobile viewport
+    await page.setViewportSize({ width: 375, height: 667 });
+    
+    // Test mobile-specific functionality
+    const mobileMenu = page.getByRole('button', { name: /menu/i });
+    await expect(mobileMenu).toBeVisible();
+  });
+
+  test('handling multiple tabs/windows', async ({ page, context }) => {
+    // Click a link that opens in a new tab
+    const [newPage] = await Promise.all([
+      context.waitForEvent('page'),
+      page.getByRole('link', { name: 'Open in new tab' }).click()
+    ]);
+    
+    // Work with the new page
+    await newPage.waitForLoadState();
+    await expect(newPage).toHaveTitle(/expected title/i);
+  });
+
+  test('testing accessibility', async ({ page }) => {
+    // Check for specific accessibility attributes
+    const button = page.getByRole('button', { name: 'Submit' });
+    await expect(button).toHaveAttribute('aria-label', 'Submit form');
+    
+    // Verify keyboard navigation
+    await button.focus();
+    await expect(button).toBeFocused();
+  });
+});
+
+/**
+ * Performance and Error Testing
+ */
+
+test.describe('Advanced Testing Scenarios', () => {
+  test('should handle errors gracefully', async ({ page }) => {
+    // Test error handling
+    page.on('pageerror', error => {
+      console.log('Page error:', error.message);
+    });
+    
+    // Navigate to a page that might have errors
+    await page.goto('/');
+  });
+
+  test('should track console messages', async ({ page }) => {
+    const messages: string[] = [];
+    
+    page.on('console', msg => {
+      messages.push(msg.text());
+    });
+    
+    await page.goto('/');
+    
+    // Verify no console errors
+    const errors = messages.filter(msg => msg.includes('Error'));
+    expect(errors.length).toBe(0);
+  });
+
+  test('should measure performance', async ({ page }) => {
+    await page.goto('/');
+    
+    // Get performance metrics
+    const metrics = await page.evaluate(() => {
+      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+      return {
+        loadTime: navigation.loadEventEnd - navigation.loadEventStart,
+        domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
+      };
+    });
+    
+    // Assert performance is acceptable
+    expect(metrics.loadTime).toBeLessThan(3000); // Less than 3 seconds
+  });
+});

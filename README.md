@@ -1,5 +1,8 @@
 # Zava Smart Sportswear
 
+[![Deploy to GitHub Pages](https://github.com/patrick-vuong/zava-smart-sportswear/actions/workflows/deploy.yml/badge.svg)](https://github.com/patrick-vuong/zava-smart-sportswear/actions/workflows/deploy.yml)
+[![Playwright Tests](https://github.com/patrick-vuong/zava-smart-sportswear/actions/workflows/playwright.yml/badge.svg)](https://github.com/patrick-vuong/zava-smart-sportswear/actions/workflows/playwright.yml)
+
 A visually stunning, interactive web application that highlights Zava's cutting-edge smart sportswear technology. This prototype showcases next-generation smart jerseys and cleats through engaging use[...]  
 
 ## 🏃‍♂️ About
