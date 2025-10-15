@@ -5,7 +5,8 @@ test.describe('Contact Form', () => {
     await page.goto('/');
     // Navigate to contact section
     await page.getByRole('button', { name: 'Contact' }).click();
-    await page.waitForTimeout(1000);
+    // Wait for section to be in viewport
+    await expect(page.locator('#contact')).toBeInViewport();
   });
 
   test('should display the contact form', async ({ page }) => {
@@ -55,9 +56,6 @@ test.describe('Contact Form', () => {
     
     // Submit the form
     await page.getByRole('button', { name: 'Send Message' }).click();
-    
-    // Wait for submission
-    await page.waitForTimeout(2000);
     
     // Check for success message
     await expect(page.getByText('Thank you! Your message has been sent successfully.')).toBeVisible();

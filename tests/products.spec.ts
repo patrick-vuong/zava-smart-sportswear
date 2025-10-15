@@ -5,7 +5,8 @@ test.describe('Products Page', () => {
     await page.goto('/');
     // Navigate to products section
     await page.getByRole('button', { name: 'Products' }).click();
-    await page.waitForTimeout(1000);
+    // Wait for section to be in viewport
+    await expect(page.locator('#products')).toBeInViewport();
   });
 
   test('should display products section', async ({ page }) => {
@@ -37,9 +38,6 @@ test.describe('Products Page', () => {
     const viewDetailsButtons = page.getByRole('button', { name: /View Details/i });
     await viewDetailsButtons.first().click();
     
-    // Wait for dialog to open
-    await page.waitForTimeout(500);
-    
     // Check that dialog is visible
     const dialog = page.locator('[role="dialog"]');
     await expect(dialog).toBeVisible();
@@ -49,8 +47,6 @@ test.describe('Products Page', () => {
     // Click View Details on first product (Zava Pro Jersey)
     const viewDetailsButtons = page.getByRole('button', { name: /View Details/i });
     await viewDetailsButtons.first().click();
-    
-    await page.waitForTimeout(500);
     
     // Check for features
     const dialog = page.locator('[role="dialog"]');
@@ -63,9 +59,6 @@ test.describe('Products Page', () => {
     // Find and click an "Add to Cart" button
     const addToCartButtons = page.getByRole('button', { name: /Add to Cart/i });
     await addToCartButtons.first().click();
-    
-    // Wait for the action to complete
-    await page.waitForTimeout(500);
     
     // Note: Since we don't have a visible cart UI, we just verify the button click worked
     // In a real scenario, you'd check for a cart indicator or notification

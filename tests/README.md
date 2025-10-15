@@ -89,8 +89,8 @@ test.describe('Feature Name', () => {
 test('should navigate to products', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Products' }).click();
-  await page.waitForTimeout(1000); // Wait for smooth scroll
   
+  // Wait for section to be in viewport (better than waitForTimeout)
   const productsSection = page.locator('#products');
   await expect(productsSection).toBeInViewport();
 });
@@ -180,11 +180,17 @@ test('should open dialog', async ({ page }) => {
 
 5. **Wait for Elements**: Use Playwright's auto-waiting, but add explicit waits when needed
    ```typescript
-   // Auto-waiting (preferred)
+   // Auto-waiting (preferred) - Playwright waits automatically
    await expect(page.getByText('Success')).toBeVisible();
    
-   // Explicit wait when needed (e.g., for animations)
-   await page.waitForTimeout(1000);
+   // Wait for specific state
+   await page.waitForLoadState('networkidle');
+   
+   // Wait for selector (when auto-waiting isn't enough)
+   await page.waitForSelector('.animation-complete');
+   
+   // Note: Avoid waitForTimeout() as it makes tests flaky
+   // Use state-based waiting instead
    ```
 
 6. **Test Mobile Viewports**: Use the configured mobile projects
@@ -269,9 +275,10 @@ npx playwright install webkit
 
 ### Tests are flaky
 
-- Increase timeout for specific actions
-- Use `waitForLoadState` for page loads
-- Ensure proper waiting for animations with `waitForTimeout`
+- Use state-based waiting instead of `waitForTimeout()`
+- Use `expect().toBeVisible()` for element visibility
+- Use `waitForLoadState()` for page loads
+- Use `waitForSelector()` for dynamic content
 
 ## Contributing
 

@@ -28,10 +28,7 @@ test.describe('Homepage', () => {
     // Click on Products in navigation
     await page.getByRole('button', { name: 'Products' }).click();
     
-    // Wait for smooth scroll to complete
-    await page.waitForTimeout(1000);
-    
-    // Check that we can see the products section
+    // Check that the products section is in viewport (Playwright auto-waits for smooth scroll)
     const productsSection = page.locator('#products');
     await expect(productsSection).toBeInViewport();
   });
@@ -42,10 +39,7 @@ test.describe('Homepage', () => {
     // Click on Technology in navigation
     await page.getByRole('button', { name: 'Technology' }).click();
     
-    // Wait for smooth scroll to complete
-    await page.waitForTimeout(1000);
-    
-    // Check that we can see the technology section
+    // Check that the technology section is in viewport
     const technologySection = page.locator('#technology');
     await expect(technologySection).toBeInViewport();
   });
@@ -56,10 +50,7 @@ test.describe('Homepage', () => {
     // Click on Contact in navigation
     await page.getByRole('button', { name: 'Contact' }).click();
     
-    // Wait for smooth scroll to complete
-    await page.waitForTimeout(1000);
-    
-    // Check that we can see the contact section
+    // Check that the contact section is in viewport
     const contactSection = page.locator('#contact');
     await expect(contactSection).toBeInViewport();
   });
