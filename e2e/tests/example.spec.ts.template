@@ -34,7 +34,8 @@ test.describe('Example Test Suite', () => {
 
   test('should display expected element', async ({ page }) => {
     // Example: Check for a specific element
-    const element = page.locator('nav');
+    // Using semantic role-based selector (recommended)
+    const element = page.getByRole('navigation');
     
     // Verify element is visible
     await expect(element).toBeVisible();
@@ -80,7 +81,7 @@ test.describe('Example Test Suite', () => {
   });
 
   // Run only this test (useful during development)
-  test.only.skip('focus on this test during development', async ({ page }) => {
+  test.only('focus on this test during development', async ({ page }) => {
     // Test implementation
     // Note: Remove .only before committing!
   });
@@ -89,8 +90,10 @@ test.describe('Example Test Suite', () => {
   test('slow test that needs more time', async ({ page }) => {
     test.slow(); // Triples the timeout
     
-    // Test implementation that might take longer
-    await page.waitForTimeout(5000);
+    // Example: Test implementation that might take longer
+    // Use proper waiting mechanisms instead of fixed timeouts
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('[data-loaded="true"]');
   });
 });
 
