@@ -115,7 +115,7 @@ playwright.config.ts            # Playwright configuration
 The `playwright.config.ts` file contains:
 
 - **Test directory**: `./e2e`
-- **Base URL**: `http://localhost:5173` (auto-started dev server)
+- **Base URL**: `http://localhost:5000/zava-smart-sportswear` (auto-started dev server)
 - **Browsers**: Chromium, Firefox, WebKit, Mobile Chrome, Mobile Safari
 - **Retry logic**: 2 retries on CI, 0 retries locally
 - **Screenshots**: Only on failure
