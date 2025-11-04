@@ -94,6 +94,54 @@ npm run dev
 Experience Zava Smart Sportswear in action!  
 [View the Live Demo](https://patrick-vuong.github.io/zava-smart-sportswear/)
 
+## ☁️ Azure Container App Deployment
+
+This application is configured for deployment to Azure Container Apps using Azure Developer CLI (azd).
+
+### Prerequisites
+- [Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
+- Azure subscription
+- [Docker](https://www.docker.com/get-started) (for local container builds)
+
+### Deployment Steps
+
+1. **Login to Azure**:
+```bash
+azd auth login
+```
+
+2. **Initialize the environment** (first-time setup):
+```bash
+azd init
+```
+
+3. **Provision and deploy** to Azure:
+```bash
+azd up
+```
+
+This command will:
+- Provision Azure resources (Container Apps, Container Registry, Cosmos DB, Log Analytics, Application Insights)
+- Build and push the Docker container to Azure Container Registry
+- Deploy the application to Azure Container Apps
+
+### Azure Resources Provisioned
+
+The deployment creates the following Azure resources:
+- **Azure Container Apps** - Hosts the web application
+- **Azure Container Registry** - Stores the Docker container image
+- **Azure Cosmos DB** - Database for smart sportswear data
+- **Log Analytics Workspace** - Centralized logging
+- **Application Insights** - Application monitoring and telemetry
+- **Managed Identity** - Secure authentication between services
+
+### Useful Commands
+
+- `azd deploy` - Deploy application updates without reprovisioning infrastructure
+- `azd down` - Delete all Azure resources
+- `azd monitor` - Monitor application logs and metrics
+- `azd env get-values` - View environment configuration
+
 ## 📱 Responsive Design
 
 The application follows a mobile-first approach with:  
