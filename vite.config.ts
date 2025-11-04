@@ -9,18 +9,32 @@ import { resolve } from 'path'
 const projectRoot = process.env.PROJECT_ROOT || import.meta.dirname
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/zava-smart-sportswear/',
-  plugins: [
+export default defineConfig(({ mode }) => {
+  const basePlugins: PluginOption[] = [
     react(),
     tailwindcss(),
     // DO NOT REMOVE
     createIconImportProxy() as PluginOption,
-    sparkPlugin() as PluginOption,
-  ],
-  resolve: {
-    alias: {
-      '@': resolve(projectRoot, 'src')
-    }
-  },
+  ]
+  
+  // Don't include spark plugin in test mode
+  const plugins = mode === 'test' 
+    ? basePlugins 
+    : [...basePlugins, sparkPlugin() as PluginOption]
+
+  return {
+    base: '/zava-smart-sportswear/',
+    plugins,
+    resolve: {
+      alias: {
+        '@': resolve(projectRoot, 'src')
+      }
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './src/test/setup.ts',
+      css: true,
+    },
+  }
 });
