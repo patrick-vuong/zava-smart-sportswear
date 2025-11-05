@@ -87,7 +87,28 @@ npm run dev
 - `npm run build` - Build for production  
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
-- `npm run optimize` - Optimize dependencies
+- `npm run optimize` - Optimize dependencies  
+- `npm run test` - Run Playwright end-to-end tests  
+- `npm run test:ui` - Run tests with Playwright UI  
+- `npm run test:headed` - Run tests in headed mode  
+- `npm run test:debug` - Debug tests with Playwright Inspector
+
+### Testing
+
+The project includes comprehensive end-to-end tests using Playwright. For detailed testing documentation, see [TESTING.md](TESTING.md).
+
+Quick start:
+```bash
+# Install Playwright browsers (first time only)
+npx playwright install
+
+# Run tests
+npm run test
+
+# Run tests with UI
+npm run test:ui
+```
+
 
 ## 🌐 Live Demo
 
