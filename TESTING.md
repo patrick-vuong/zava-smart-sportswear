@@ -325,11 +325,13 @@ When tests fail:
 The Playwright configuration is in `playwright.config.ts`:
 
 - **Test Directory**: `./e2e`
-- **Base URL**: `http://localhost:5173`
+- **Base URL**: `http://localhost:5000/zava-smart-sportswear/`
 - **Browsers**: Chromium, Firefox, WebKit, Mobile Chrome, Mobile Safari
 - **Screenshots**: Taken on failure
 - **Traces**: Collected on first retry
-- **Web Server**: Automatically starts `npm run dev` before tests
+- **Web Server**: Automatically starts `npm run dev` before tests (runs on port 5000)
+
+**Note**: The Vite dev server runs on port 5000 with base path `/zava-smart-sportswear/` as configured in `vite.config.ts`.
 
 ### Customizing Configuration
 
