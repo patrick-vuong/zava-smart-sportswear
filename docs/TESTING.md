@@ -146,8 +146,8 @@ Screenshots are automatically taken on test failures (configured in `playwright.
 The Playwright configuration is defined in `playwright.config.ts`:
 
 - **Test Directory**: `tests/e2e/`
-- **Base URL**: `http://localhost:5173` (development server)
-- **Browsers**: Chromium, Firefox, WebKit, Mobile Chrome, Mobile Safari
+- **Base URL**: `http://localhost:5000/zava-smart-sportswear` (development server)
+- **Browsers**: Chromium (configurable for Firefox, WebKit, mobile viewports)
 - **Screenshots**: Taken on failure
 - **Traces**: Collected on retry
 - **Web Server**: Automatically starts dev server before tests
@@ -282,13 +282,16 @@ npx playwright install chromium --with-deps
 
 ### Port Already in Use
 
-If port 5173 is already in use:
+If port 5000 is already in use:
 
 ```bash
 # Kill the process using the port
 npm run kill
 
-# Or use a different port in playwright.config.ts
+# Or check what's using the port
+lsof -ti:5000
+
+# Or use a different port by modifying vite.config.ts
 ```
 
 ### Tests Timing Out
