@@ -88,6 +88,17 @@ npm run dev
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
 - `npm run optimize` - Optimize dependencies
+- `npm run test:e2e` - Run end-to-end tests with Playwright
+- `npm run test:e2e:ui` - Run tests with Playwright UI mode
+- `npm run test:e2e:headed` - Run tests in headed mode (visible browser)
+- `npm run test:e2e:debug` - Debug tests with Playwright Inspector
+- `npm run test:e2e:report` - View test results report
+
+## 🧪 Testing
+
+This project uses Playwright for end-to-end testing. Tests cover key user flows including navigation, contact form submission, and hero section interactions.
+
+For detailed testing documentation, see [docs/TESTING.md](docs/TESTING.md)
 
 ## 🌐 Live Demo
 
