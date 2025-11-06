@@ -98,7 +98,16 @@ npm run dev
 
 This project uses Playwright for end-to-end testing. Tests cover key user flows including navigation, contact form submission, and hero section interactions.
 
-For detailed testing documentation, see [docs/TESTING.md](docs/TESTING.md)
+**Quick Start:**
+```bash
+npm install --legacy-peer-deps
+npx playwright install chromium
+npm run test:e2e
+```
+
+For detailed testing documentation:
+- [Quick Start Guide](docs/TESTING_QUICKSTART.md) - Get up and running quickly
+- [Full Testing Documentation](docs/TESTING.md) - Comprehensive guide
 
 ## 🌐 Live Demo
 
