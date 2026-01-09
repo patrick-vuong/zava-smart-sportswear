@@ -87,7 +87,7 @@ npm install
 npm run dev  
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+4. Open your browser and navigate to `http://localhost:5000/zava-smart-sportswear/`
 
 ### Available Scripts
 
@@ -96,6 +96,66 @@ npm run dev
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
 - `npm run optimize` - Optimize dependencies
+- `npm run test` - Run Playwright E2E tests  
+- `npm run test:ui` - Run tests with Playwright UI mode  
+- `npm run test:headed` - Run tests in headed mode (visible browser)  
+- `npm run test:debug` - Debug tests with Playwright
+
+### Testing
+
+The project includes comprehensive end-to-end tests using Playwright that cover:
+
+- **Homepage functionality** - Navigation, hero section, responsive design
+- **Products showcase** - Interactive product cards and specifications  
+- **Technology demonstrations** - Interactive infographics and features
+- **Athletes testimonials** - Carousel functionality and video content
+- **Contact forms** - Form validation and user interaction
+- **Accessibility** - Keyboard navigation, semantic HTML, color contrast
+- **Performance** - Load times and responsive behavior across devices
+
+#### Running Tests
+
+1. **Install Playwright browsers** (first time only):
+```bash
+npx playwright install
+```
+
+2. **Run all tests**:
+```bash
+npm run test
+```
+
+3. **Run tests with UI** (interactive mode):
+```bash
+npm run test:ui
+```
+
+4. **Run tests in headed mode** (see browser):
+```bash
+npm run test:headed
+```
+
+5. **Debug specific tests**:
+```bash
+npm run test:debug
+```
+
+#### Test Structure
+
+- `tests/homepage.spec.ts` - Homepage and navigation tests
+- `tests/products.spec.ts` - Products section functionality
+- `tests/technology.spec.ts` - Technology demonstration tests  
+- `tests/athletes.spec.ts` - Athletes carousel and testimonials
+- `tests/contact.spec.ts` - Contact form validation
+- `tests/accessibility.spec.ts` - Accessibility and performance tests
+
+#### CI/CD Integration
+
+Tests automatically run on:
+- Pull requests to main/master branches
+- Pushes to main/master branches
+
+Test reports are generated and stored as artifacts for 30 days.
 
 ## 🌐 Live Demo
 
