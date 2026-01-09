@@ -95,7 +95,59 @@ npm run dev
 - `npm run build` - Build for production  
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
-- `npm run optimize` - Optimize dependencies
+- `npm run optimize` - Optimize dependencies  
+- `npm test` - Run Playwright tests  
+- `npm run test:ui` - Run Playwright tests in UI mode  
+- `npm run test:headed` - Run Playwright tests in headed mode  
+- `npm run test:report` - Show Playwright test report
+
+## 🧪 Testing
+
+This project uses [Playwright](https://playwright.dev/) for end-to-end testing.
+
+### Running Tests
+
+To run all tests:
+```bash
+npm test
+```
+
+To run tests in interactive UI mode:
+```bash
+npm run test:ui
+```
+
+To run tests in headed mode (see browser):
+```bash
+npm run test:headed
+```
+
+To view the last test report:
+```bash
+npm run test:report
+```
+
+### Test Coverage
+
+The test suite covers:
+- **Homepage**: Hero section, navigation, and CTA buttons
+- **Products**: Product display, features, and interactive elements
+- **Technology**: Smart technology features and demonstrations
+- **Athletes**: Testimonials, stories, and carousel functionality
+- **Contact**: Contact form validation and information display
+- **Accessibility**: Keyboard navigation, screen reader support, and responsive design
+
+### First Time Setup
+
+Before running tests for the first time, install Playwright browsers:
+```bash
+npx playwright install
+```
+
+### CI/CD Integration
+
+Playwright tests run automatically on every pull request and push to the main branch via GitHub Actions. Test reports are uploaded as artifacts and retained for 30 days.
+
 
 ## 🌐 Live Demo
 
