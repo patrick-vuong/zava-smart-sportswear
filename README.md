@@ -96,6 +96,60 @@ npm run dev
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
 - `npm run optimize` - Optimize dependencies
+- `npm run test:e2e` - Run end-to-end tests with Playwright
+- `npm run test:e2e:ui` - Run Playwright tests in interactive UI mode
+- `npm run test:e2e:headed` - Run Playwright tests in headed mode (visible browser)
+- `npm run test:e2e:report` - Show the latest Playwright test report
+
+## 🧪 Testing
+
+This project uses [Playwright](https://playwright.dev/) for end-to-end testing to ensure the reliability of core user flows.
+
+### Running Tests Locally
+
+1. Install Playwright browsers (first time only):
+```bash
+npx playwright install --with-deps chromium
+```
+
+2. Run all tests:
+```bash
+npm run test:e2e
+```
+
+3. Run tests with UI mode for debugging:
+```bash
+npm run test:e2e:ui
+```
+
+4. Run tests in headed mode (watch the browser):
+```bash
+npm run test:e2e:headed
+```
+
+5. View the test report:
+```bash
+npm run test:e2e:report
+```
+
+### Test Coverage
+
+The Playwright test suite covers the following critical user journeys:
+
+- **Homepage Navigation**: Verifying navigation menu, section scrolling, and footer content
+- **Product Showcase**: Testing product display, detail dialogs, and cart interactions
+- **Contact Form**: Validating form fields, submission, and error handling
+
+### Testing on Different Viewports
+
+Tests are configured to run on multiple viewports:
+- Desktop Chrome (1280x720)
+- Mobile Chrome (Pixel 5)
+- Mobile Safari (iPhone 12)
+
+### CI/CD Integration
+
+Playwright tests run automatically on every pull request and push to the main branch via GitHub Actions. Test reports are uploaded as artifacts and retained for 30 days.
 
 ## 🌐 Live Demo
 
