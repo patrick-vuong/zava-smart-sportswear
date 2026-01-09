@@ -96,11 +96,33 @@ npm run dev
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
 - `npm run optimize` - Optimize dependencies
+- `npm test` - Run end-to-end tests with Playwright
+- `npm run test:ui` - Run tests in interactive UI mode
+- `npm run test:report` - View HTML test report
 
 ## 🌐 Live Demo
 
 Experience Zava Smart Sportswear in action!  
 [View the Live Demo](https://patrick-vuong.github.io/zava-smart-sportswear/)
+
+## 🧪 Testing
+
+This project uses Playwright for end-to-end testing across multiple browsers.
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in interactive mode
+npm run test:ui
+
+# View test report
+npm run test:report
+```
+
+See the [Testing Documentation](tests/README.md) for detailed information about writing and running tests.
 
 ## 📱 Responsive Design
 
