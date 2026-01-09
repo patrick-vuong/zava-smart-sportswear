@@ -95,7 +95,74 @@ npm run dev
 - `npm run build` - Build for production  
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
-- `npm run optimize` - Optimize dependencies
+- `npm run optimize` - Optimize dependencies  
+- `npm test` - Run Playwright tests (headless)  
+- `npm run test:ui` - Run Playwright tests in UI mode  
+- `npm run test:headed` - Run Playwright tests in headed mode  
+- `npm run test:debug` - Debug Playwright tests  
+- `npm run test:report` - Show Playwright test report
+
+## 🧪 Testing
+
+This project uses [Playwright](https://playwright.dev/) for end-to-end testing. Playwright provides reliable cross-browser testing for modern web applications.
+
+### Running Tests
+
+1. **Install Playwright browsers** (first time only):
+```bash
+npx playwright install
+```
+
+2. **Run tests in headless mode** (default):
+```bash
+npm test
+```
+
+3. **Run tests with UI mode** (interactive):
+```bash
+npm run test:ui
+```
+
+4. **Run tests in headed mode** (see the browser):
+```bash
+npm run test:headed
+```
+
+5. **Debug tests**:
+```bash
+npm run test:debug
+```
+
+6. **View test report**:
+```bash
+npm run test:report
+```
+
+### Test Coverage
+
+The test suite includes:
+- **Homepage Tests**: Navigation, hero section, and overall page structure
+- **Products Tests**: Product display, details modal, and cart functionality
+- **Contact Form Tests**: Form validation, submission, and contact information display
+
+### Writing New Tests
+
+Tests are located in the `/tests` directory. Each test file follows the pattern `*.spec.ts`.
+
+Example test structure:
+```typescript
+import { test, expect } from '@playwright/test';
+
+test.describe('Feature Name', () => {
+  test('should do something', async ({ page }) => {
+    await page.goto('/');
+    // Test assertions
+    await expect(page.locator('selector')).toBeVisible();
+  });
+});
+```
+
+For more information on writing tests, see the [Playwright documentation](https://playwright.dev/docs/writing-tests).
 
 ## 🌐 Live Demo
 
