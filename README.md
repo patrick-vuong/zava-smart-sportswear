@@ -96,6 +96,76 @@ npm run dev
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
 - `npm run optimize` - Optimize dependencies
+- `npm run test` - Run Playwright E2E tests
+- `npm run test:ui` - Run Playwright tests with UI mode
+- `npm run test:headed` - Run Playwright tests in headed mode (see browser)
+- `npm run test:debug` - Debug Playwright tests
+- `npm run test:report` - View test results report
+
+## 🧪 End-to-End Testing
+
+This project uses [Playwright](https://playwright.dev/) for end-to-end testing to ensure all features work correctly across different browsers.
+
+### Running Tests
+
+```bash
+# Run all tests
+npm run test
+
+# Run tests with UI mode for better debugging
+npm run test:ui
+
+# Run tests in headed mode to see the browser
+npm run test:headed
+
+# Debug a specific test
+npm run test:debug
+
+# View test results report
+npm run test:report
+```
+
+### Test Structure
+
+Tests are located in the `tests/` directory and cover:
+- **Navigation** (`navigation.spec.ts`) - Tests homepage loading and navigation between sections
+- **Contact Form** (`contact-form.spec.ts`) - Tests form validation and submission
+- **Products** (`products.spec.ts`) - Tests product showcase display and interactions
+
+### Writing New Tests
+
+To add new tests:
+
+1. Create a new `.spec.ts` file in the `tests/` directory
+2. Import the test framework: `import { test, expect } from '@playwright/test';`
+3. Write your test cases following the existing patterns
+4. Use screenshots for visual validation: `await page.screenshot({ path: 'tests/screenshots/my-test.png' });`
+
+Example test structure:
+```typescript
+import { test, expect } from '@playwright/test';
+
+test.describe('Feature Name', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('should do something', async ({ page }) => {
+    // Your test code here
+    await expect(page.locator('selector')).toBeVisible();
+  });
+});
+```
+
+### CI/CD Integration
+
+Tests are configured to run in CI environments with:
+- Automatic retries on failure
+- Trace collection for debugging
+- Screenshot capture on test failures
+
+For more information, see the [Playwright documentation](https://playwright.dev/).
+
 
 ## 🌐 Live Demo
 
