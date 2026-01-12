@@ -5,7 +5,7 @@ test.describe('Products Showcase', () => {
     await page.goto('/');
     // Navigate to products section
     await page.click('text=Products');
-    await page.waitForTimeout(500); // Wait for smooth scroll
+    await page.waitForLoadState('networkidle');
   });
 
   test('should display product cards', async ({ page }) => {

@@ -5,7 +5,7 @@ test.describe('Contact Form', () => {
     await page.goto('/');
     // Navigate to contact section
     await page.click('text=Contact');
-    await page.waitForTimeout(500); // Wait for smooth scroll
+    await page.waitForLoadState('networkidle');
   });
 
   test('should display contact form', async ({ page }) => {
