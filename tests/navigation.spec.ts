@@ -14,26 +14,32 @@ test.describe('Navigation', () => {
   test('should navigate to all main sections', async ({ page }) => {
     // Test navigation to Products section
     await page.click('text=Products');
+    await page.waitForLoadState('networkidle');
     await expect(page.locator('#products')).toBeInViewport();
     
     // Test navigation to Technology section
     await page.click('text=Technology');
+    await page.waitForLoadState('networkidle');
     await expect(page.locator('#technology')).toBeInViewport();
     
     // Test navigation to Athletes section
     await page.click('text=Athletes');
+    await page.waitForLoadState('networkidle');
     await expect(page.locator('#athletes')).toBeInViewport();
     
     // Test navigation to About section
     await page.click('text=About');
+    await page.waitForLoadState('networkidle');
     await expect(page.locator('#about')).toBeInViewport();
     
     // Test navigation to Contact section
     await page.click('text=Contact');
+    await page.waitForLoadState('networkidle');
     await expect(page.locator('#contact')).toBeInViewport();
     
     // Test navigation back to Home
     await page.click('text=Home');
+    await page.waitForLoadState('networkidle');
     await expect(page.locator('#home')).toBeInViewport();
   });
 
@@ -43,7 +49,7 @@ test.describe('Navigation', () => {
     
     // Reload the page with mobile viewport
     await page.goto('/');
-    await page.waitForTimeout(1000);
+    await page.waitForLoadState('networkidle');
     
     // Check if mobile menu button is visible (it uses a Sheet component with Menu icon)
     const menuButton = page.locator('button:has(svg)').filter({ hasText: '' }).first();
@@ -51,7 +57,7 @@ test.describe('Navigation', () => {
     // If mobile menu button exists, test it
     if (await menuButton.count() > 0 && await menuButton.isVisible()) {
       await menuButton.click();
-      await page.waitForTimeout(500);
+      await page.waitForLoadState('domcontentloaded');
       
       // Check if navigation items appear
       const hasNavItems = await page.locator('text=Home').count() > 0;

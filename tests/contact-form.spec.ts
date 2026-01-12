@@ -22,7 +22,7 @@ test.describe('Contact Form', () => {
     await submitButton.click();
     
     // Wait for validation - form should still be on the page or show an error
-    await page.waitForTimeout(1000);
+    await page.waitForLoadState('networkidle');
     
     // The form should either show validation (toast or inline) or stay on the same page
     // We'll check if we're still on the contact section (form didn't submit successfully)
@@ -48,7 +48,7 @@ test.describe('Contact Form', () => {
     await submitButton.click();
     
     // Wait for validation
-    await page.waitForTimeout(1000);
+    await page.waitForLoadState('networkidle');
     
     // Check that we're still on the contact section (form didn't submit with invalid email)
     const contactSection = page.locator('#contact');
@@ -65,12 +65,12 @@ test.describe('Contact Form', () => {
     // Take screenshot before submission
     await page.screenshot({ path: 'tests/screenshots/contact-form-filled.png' });
     
-    // Submit form (skip the select field that's causing timeout)
+    // Submit form
     const submitButton = page.locator('button[type="submit"], button:has-text("Send Message"), button:has-text("Submit")').first();
     await submitButton.click();
     
     // Wait for response
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
     
     // Take screenshot after submission
     await page.screenshot({ path: 'tests/screenshots/contact-form-submitted.png' });

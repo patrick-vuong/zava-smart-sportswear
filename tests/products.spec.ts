@@ -13,13 +13,14 @@ test.describe('Products Showcase', () => {
     await expect(page.locator('#products')).toBeVisible();
     
     // Look for product-related content
+    await page.waitForLoadState('networkidle');
     const hasProductContent = await page.locator('text=/smart jersey|smart cleat|product|feature/i').count() > 0;
     expect(hasProductContent).toBeTruthy();
   });
 
   test('should display product features', async ({ page }) => {
     // Wait for product cards to load
-    await page.waitForTimeout(1000);
+    await page.waitForLoadState('networkidle');
     
     // Check for common product features or specifications
     const hasFeatures = await page.locator('text=/performance|sensor|tracking|monitoring|technology|biometric/i').count() > 0;
@@ -28,7 +29,7 @@ test.describe('Products Showcase', () => {
 
   test('should have interactive product elements', async ({ page }) => {
     // Wait for any animations to complete
-    await page.waitForTimeout(1000);
+    await page.waitForLoadState('networkidle');
     
     // Look for buttons or interactive elements in the products section
     const productButtons = page.locator('#products button, #products a[href], #products [role="button"]');
@@ -39,7 +40,7 @@ test.describe('Products Showcase', () => {
 
   test('should take screenshot of products section', async ({ page }) => {
     // Wait for content to load
-    await page.waitForTimeout(1000);
+    await page.waitForLoadState('networkidle');
     
     // Take screenshot of products section
     await page.screenshot({ path: 'tests/screenshots/products-section.png', fullPage: false });
@@ -52,7 +53,7 @@ test.describe('Products Showcase', () => {
     // Navigate to products
     await page.goto('/');
     await page.click('text=Products');
-    await page.waitForTimeout(500);
+    await page.waitForLoadState('networkidle');
     
     // Check if products section is still visible on mobile
     await expect(page.locator('#products')).toBeVisible();
