@@ -6,8 +6,8 @@ test.describe('Homepage Navigation', () => {
   });
 
   test('should display the main navigation', async ({ page }) => {
-    // Check if the logo is visible
-    await expect(page.getByText('ZAVA')).toBeVisible();
+    // Check if the logo is visible in the navigation
+    await expect(page.getByRole('navigation').getByText('ZAVA')).toBeVisible();
     
     // Check if navigation items are present (desktop view)
     const navigation = ['Home', 'Products', 'Technology', 'Athletes', 'About', 'Contact'];
