@@ -53,7 +53,8 @@ test.describe('Contact Form', () => {
     
     // Select inquiry type using Radix UI Select component
     await page.click('#inquiry-type');
-    await page.waitForTimeout(500); // Wait for dropdown to open
+    // Wait for dropdown to be visible
+    await page.waitForSelector('[role="option"]', { state: 'visible' });
     await page.getByRole('option', { name: 'Product Questions' }).click();
     
     // Take screenshot of filled form

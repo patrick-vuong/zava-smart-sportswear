@@ -36,8 +36,8 @@ test.describe('Navigation', () => {
       // Click navigation link
       await page.click(`text=${section.name}`);
       
-      // Wait for smooth scroll to complete
-      await page.waitForTimeout(1000);
+      // Wait for the section to be visible
+      await page.waitForSelector(`text=${section.heading}`, { state: 'visible' });
       
       // Verify section is visible
       await expect(page.locator(`text=${section.heading}`).first()).toBeVisible();
@@ -58,19 +58,18 @@ test.describe('Navigation', () => {
     await page.reload();
     await page.waitForLoadState('networkidle');
     
-    // Verify mobile menu button is visible
-    const menuButton = page.locator('button:has-text("Menu"), button[aria-label="Menu"]').or(
-      page.locator('button').filter({ has: page.locator('svg') }).first()
-    );
+    // Verify mobile menu button is visible - try multiple strategies
+    const menuButton = page.locator('nav button').first();
+    await expect(menuButton).toBeVisible();
     
     // Take screenshot of mobile view
     await page.screenshot({ path: 'tests/screenshots/mobile-navigation-closed.png' });
     
     // Click the menu button to open mobile menu
-    await menuButton.first().click();
+    await menuButton.click();
     
-    // Wait for menu to open
-    await page.waitForTimeout(500);
+    // Wait for menu to open by checking for navigation items
+    await page.waitForSelector('text=Home', { state: 'visible', timeout: 1000 });
     
     // Take screenshot of open mobile menu
     await page.screenshot({ path: 'tests/screenshots/mobile-navigation-open.png' });
@@ -83,8 +82,8 @@ test.describe('Navigation', () => {
     // Click a navigation item
     await page.locator('text=Products').last().click();
     
-    // Wait for navigation
-    await page.waitForTimeout(1000);
+    // Wait for Products section to be visible
+    await page.waitForSelector('text=Smart Sportswear Collection', { state: 'visible' });
     
     // Verify Products section is visible
     await expect(page.locator('text=Smart Sportswear Collection').first()).toBeVisible();
@@ -103,8 +102,8 @@ test.describe('Navigation', () => {
     // Click "Shop Now" button
     await page.click('button:has-text("Shop Now")');
     
-    // Wait for smooth scroll
-    await page.waitForTimeout(1000);
+    // Wait for Products section to be visible
+    await page.waitForSelector('text=Smart Sportswear Collection', { state: 'visible' });
     
     // Verify we're in the products section
     await expect(page.locator('text=Smart Sportswear Collection').first()).toBeVisible();
@@ -117,8 +116,8 @@ test.describe('Navigation', () => {
     // Scroll to footer
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     
-    // Wait for scroll to complete
-    await page.waitForTimeout(500);
+    // Wait for footer to be visible
+    await page.waitForSelector('footer', { state: 'visible' });
     
     // Verify footer content
     await expect(page.locator('footer')).toBeVisible();
