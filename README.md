@@ -96,6 +96,108 @@ npm run dev
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
 - `npm run optimize` - Optimize dependencies
+- `npm run test` - Run Playwright tests in headless mode
+- `npm run test:headed` - Run Playwright tests with browser UI visible
+- `npm run test:ui` - Run Playwright tests in interactive UI mode
+- `npm run test:debug` - Run Playwright tests in debug mode
+- `npm run test:report` - Show the last test report
+
+## 🧪 Testing
+
+This project uses [Playwright](https://playwright.dev/) for end-to-end testing. The test suite covers critical user flows and ensures the application works correctly across different browsers.
+
+### Running Tests
+
+1. **Run all tests** (headless mode):
+   ```bash
+   npm run test
+   ```
+
+2. **Run tests with visible browser**:
+   ```bash
+   npm run test:headed
+   ```
+
+3. **Run tests in interactive UI mode**:
+   ```bash
+   npm run test:ui
+   ```
+   This opens Playwright's test UI where you can run tests individually, see traces, and debug.
+
+4. **Debug a specific test**:
+   ```bash
+   npm run test:debug
+   ```
+   This opens the Playwright Inspector for step-by-step debugging.
+
+5. **View test results**:
+   ```bash
+   npm run test:report
+   ```
+   Opens an HTML report with detailed test results and screenshots.
+
+### Test Coverage
+
+The test suite includes:
+
+- **Contact Form Tests** (`tests/contact-form.spec.ts`)
+  - Form validation (required fields, email format)
+  - Successful form submission
+  - Form reset after submission
+  - Contact information display
+
+- **Navigation Tests** (`tests/navigation.spec.ts`)
+  - Homepage hero section
+  - Navigation through all sections
+  - Mobile navigation menu
+  - Call-to-action buttons
+  - Footer content
+
+### Test Screenshots
+
+Tests automatically capture screenshots at key moments:
+- Form states (empty, filled, validation errors, success)
+- Navigation between sections
+- Mobile view interactions
+- Error states
+
+Screenshots are saved in `tests/screenshots/` directory.
+
+### Writing New Tests
+
+To add new tests:
+
+1. Create a new `.spec.ts` file in the `tests/` directory
+2. Import test utilities:
+   ```typescript
+   import { test, expect } from '@playwright/test';
+   ```
+3. Write your test cases following the existing patterns
+4. Use descriptive test names and include comments
+5. Capture screenshots for visual verification
+
+Example test structure:
+```typescript
+test.describe('Feature Name', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('should do something', async ({ page }) => {
+    // Your test code here
+    await expect(page.locator('selector')).toBeVisible();
+  });
+});
+```
+
+### CI/CD Integration
+
+The Playwright configuration is optimized for CI environments:
+- Automatic retry on failure in CI
+- HTML reporter for test results
+- Screenshot capture on failure
+- Trace recording for debugging
+
 
 ## 🌐 Live Demo
 
