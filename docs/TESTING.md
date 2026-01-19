@@ -179,7 +179,7 @@ The Playwright configuration is optimized for CI environments:
 
 Key configurations:
 - **Test Directory**: `./e2e`
-- **Base URL**: `http://localhost:5173`
+- **Base URL**: `http://localhost:5000/zava-smart-sportswear`
 - **Browsers**: Chromium (default), Firefox and WebKit available
 - **Retries**: 2 on CI, 0 locally
 - **Screenshots**: On failure
