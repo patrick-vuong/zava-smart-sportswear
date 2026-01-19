@@ -87,7 +87,7 @@ npm install
 npm run dev  
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+4. Open your browser and navigate to `http://localhost:5000/zava-smart-sportswear/`
 
 ### Available Scripts
 
@@ -96,6 +96,108 @@ npm run dev
 - `npm run preview` - Preview production build  
 - `npm run lint` - Run ESLint  
 - `npm run optimize` - Optimize dependencies
+- `npm run test` - Run Playwright E2E tests  
+- `npm run test:ui` - Run tests in interactive UI mode  
+- `npm run test:headed` - Run tests in headed browser mode  
+- `npm run test:report` - Show HTML test report
+
+## 🧪 Testing
+
+This project uses [Playwright](https://playwright.dev/) for end-to-end testing.
+
+### Running Tests
+
+To run the test suite:
+
+```bash
+npm run test
+```
+
+The tests will automatically:
+- Start the development server
+- Run all E2E tests in headless mode
+- Generate screenshots for key user flows
+- Produce an HTML report
+
+### Interactive Test Mode
+
+For development and debugging, use the interactive UI:
+
+```bash
+npm run test:ui
+```
+
+This opens Playwright's UI where you can:
+- Run individual tests
+- Debug tests step-by-step
+- See browser interactions in real-time
+- Inspect test results
+
+### Viewing Test Reports
+
+After running tests, view the HTML report:
+
+```bash
+npm run test:report
+```
+
+### Test Coverage
+
+Current test suites include:
+
+1. **Homepage Navigation** (`e2e/homepage.spec.ts`)
+   - Navigation menu functionality
+   - Hero section display
+   - Section scrolling
+   - Footer content
+
+2. **Contact Form** (`e2e/contact-form.spec.ts`)
+   - Form field validation
+   - Email validation
+   - Form submission flow
+   - Success/error states
+
+3. **Products Showcase** (`e2e/products.spec.ts`)
+   - Product card display
+   - Product details modal
+   - Add to cart functionality
+   - Product specifications
+
+### Writing New Tests
+
+To add new tests:
+
+1. Create a new `.spec.ts` file in the `e2e` directory
+2. Import test utilities: `import { test, expect } from '@playwright/test'`
+3. Write test cases using Playwright's API
+4. Run your tests to verify they pass
+
+Example test structure:
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+test.describe('Feature Name', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('should do something', async ({ page }) => {
+    // Your test code here
+    await expect(page.getByText('Something')).toBeVisible();
+  });
+});
+```
+
+### Screenshots
+
+Tests automatically capture screenshots for:
+- Key user interactions
+- Error states
+- Success confirmations
+
+Screenshots are saved to `e2e/screenshots/` and are gitignored.
+
 
 ## 🌐 Live Demo
 
