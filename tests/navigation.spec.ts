@@ -25,9 +25,9 @@ test.describe('Navigation', () => {
   test('should navigate through all sections', async ({ page }) => {
     const sections = [
       { name: 'Home', heading: 'Unleash Your Potential' },
-      { name: 'Products', heading: 'Smart Sportswear' },
-      { name: 'Technology', heading: 'Cutting-Edge Technology' },
-      { name: 'Athletes', heading: 'Athlete Stories' },
+      { name: 'Products', heading: 'Smart Sportswear Collection' },
+      { name: 'Technology', heading: 'Revolutionary Smart Technology' },
+      { name: 'Athletes', heading: 'Athletes Trust Zava' },
       { name: 'About', heading: 'About Zava' },
       { name: 'Contact', heading: 'Get in Touch' },
     ];
@@ -87,7 +87,7 @@ test.describe('Navigation', () => {
     await page.waitForTimeout(1000);
     
     // Verify Products section is visible
-    await expect(page.locator('text=Smart Sportswear').first()).toBeVisible();
+    await expect(page.locator('text=Smart Sportswear Collection').first()).toBeVisible();
   });
 
   test('should display logo and brand name', async ({ page }) => {
@@ -99,7 +99,7 @@ test.describe('Navigation', () => {
     await expect(logo).toBeVisible();
   });
 
-  test('should have working call-to-action buttons in hero', async ({ page }) => {
+  test('should verify we\'re in the products section', async ({ page }) => {
     // Click "Shop Now" button
     await page.click('button:has-text("Shop Now")');
     
@@ -107,7 +107,7 @@ test.describe('Navigation', () => {
     await page.waitForTimeout(1000);
     
     // Verify we're in the products section
-    await expect(page.locator('text=Smart Sportswear').first()).toBeVisible();
+    await expect(page.locator('text=Smart Sportswear Collection').first()).toBeVisible();
     
     // Take screenshot after navigation
     await page.screenshot({ path: 'tests/screenshots/shop-now-clicked.png' });
@@ -122,13 +122,13 @@ test.describe('Navigation', () => {
     
     // Verify footer content
     await expect(page.locator('footer')).toBeVisible();
-    await expect(page.locator('footer >> text=ZAVA')).toBeVisible();
+    await expect(page.locator('footer >> text=ZAVA').first()).toBeVisible();
     await expect(page.locator('footer >> text=Unleashing athletic potential')).toBeVisible();
     
     // Verify footer sections
-    await expect(page.locator('footer >> text=Products')).toBeVisible();
-    await expect(page.locator('footer >> text=Technology')).toBeVisible();
-    await expect(page.locator('footer >> text=Support')).toBeVisible();
+    await expect(page.locator('footer >> text=Products').first()).toBeVisible();
+    await expect(page.locator('footer >> text=Technology').first()).toBeVisible();
+    await expect(page.locator('footer >> text=Support').first()).toBeVisible();
     
     // Take screenshot of footer
     await page.screenshot({ path: 'tests/screenshots/footer.png' });
